@@ -42,6 +42,6 @@ public class CameraController : MonoBehaviour
 
     private void PointCamera()
     {
-        transform.position = m_PointToPosition + Vector3.up * m_Height + transform.TransformDirection(Vector3.back) * m_Distance;
+        transform.position = m_PointToPosition + transform.TransformDirection(Vector3.back) * m_Distance;
     }
 }

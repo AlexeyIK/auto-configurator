@@ -98,7 +98,7 @@ public class DragHandler : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (m_IsDragging)
         {
