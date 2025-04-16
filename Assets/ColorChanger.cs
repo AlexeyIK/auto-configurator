@@ -3,16 +3,12 @@ using UnityEngine;
 public class ColorChanger : MonoBehaviour
 {
     [SerializeField]
-    private Material mBaseMaterial = default;
-    [SerializeField]
-    private Color mColor = default;
+    private MeshRenderer[] m_Renderers = default;
 
-    private void OnValidate()
+    public void ChangeColor(Color color)
     {
-        if (mBaseMaterial != null)
-        {
-            Debug.Log(mBaseMaterial.GetColor("baseColorFactor"));
-            mBaseMaterial.SetColor("baseColorFactor", mColor);
-        }
+        if (m_Renderers.Length > 0)
+            foreach (var renderer in m_Renderers)
+                renderer.sharedMaterial?.SetColor("baseColorFactor", color);
     }
 }

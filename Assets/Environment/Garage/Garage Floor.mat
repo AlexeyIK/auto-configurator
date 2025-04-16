@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8309708079268654906
+--- !u!114 &-6366067509165352411
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 9
---- !u!114 &-2582431306823059966
+--- !u!114 &-5450662234021429893
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -33,10 +33,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: scene Variant
+  m_Name: Garage Floor
   m_Shader: {fileID: -6465566751694194690, guid: b9d29dfa1474148e792ac720cbd45122,
     type: 3}
-  m_Parent: {fileID: 6426182024860133824, guid: 476eb92f9d8924698a671108f6af3d82,
+  m_Parent: {fileID: 5211912223082619409, guid: aaea0509c3b714118ac8747403bf8f03,
     type: 3}
   m_ModifiedSerializedProperties: 2
   m_ValidKeywords: []
@@ -56,13 +56,14 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 0
+    - _AlphaToMask: 0
     - _BUILTIN_QueueControl: 1
+    - _CastShadows: 1
     - _QueueControl: 1
-    - emissiveExposureWeight: 0
-    - metallicFactor: 0
-    - normalTexture_scale: 1
-    - occlusionTexture_strength: 1
-    - roughnessFactor: 0.959
-    m_Colors: []
+    - metallicFactor: 1
+    - roughnessFactor: 0.309
+    m_Colors:
+    - baseColorFactor: {r: 0.82702917, g: 0.8474713, b: 0.990566, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

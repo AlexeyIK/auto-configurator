@@ -6,6 +6,7 @@ public class StandRotator : MonoBehaviour
     private bool m_IsDragging;
     private float m_RotateCountdown;
 
+    [SerializeField] private Transform m_SpawnPoint = default;
     [SerializeField] private float m_RotateSpeed = -2f;
     [SerializeField] private float m_DragRotateSensivity = 1f;
     [SerializeField] private float m_RotatePause = 1f;
@@ -19,7 +20,11 @@ public class StandRotator : MonoBehaviour
             m_IsDragging = false;
             m_RotateCountdown = m_RotatePause;
         };
-        m_DragHandler.DragPerforming += (position, delta) => transform.Rotate(Vector3.up, -delta.x * m_DragRotateSensivity);
+        m_DragHandler.DragPerforming += (position, delta) =>
+        {
+            transform.Rotate(Vector3.up, -delta.x * m_DragRotateSensivity);
+            m_SpawnPoint.Rotate(Vector3.up, -delta.x * m_DragRotateSensivity);
+        };
     }
 
     private void Update()
@@ -29,7 +34,10 @@ public class StandRotator : MonoBehaviour
             if (m_RotateCountdown > 0)
                 m_RotateCountdown -= Time.deltaTime;
             else
+            {
                 transform.Rotate(new Vector3(0, 1, 0), m_RotateSpeed * Time.deltaTime);
+                m_SpawnPoint.Rotate(new Vector3(0, 1, 0), m_RotateSpeed * Time.deltaTime);
+            }
         }
     }
 }
