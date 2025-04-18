@@ -19,15 +19,25 @@ public class HoverDetector : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
     }
 
+    private void OnDestroy()
+    {
+        var collider = GetComponentInChildren<Collider>();
+        collider.enabled = false;
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         for (var i = 0; i < m_Meshes.Length; i++)
             m_Meshes[i].material = m_HoverMaterial;
+
+        Debug.Log("Hover on");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         for (var i = 0; i < m_Meshes.Length; i++)
             m_Meshes[i].material = m_DefaultMaterials[i];
+
+        Debug.Log("Hover leave");
     }
 }

@@ -24,7 +24,5 @@ public class Car : MonoBehaviour
 
         if (m_OverrideColor)
             colorChanger.ChangeColor(m_Color);
-
-        gameObject.name += $"({CarID})";
     }
 }
