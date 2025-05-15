@@ -1,6 +1,8 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/items-menu.uss?fileID=7433441132597879392&amp;guid=5416644a9b3bc4e64af670d4f5b601fc&amp;type=3#items-menu" />
-    <ui:VisualElement name="CathegoryPanel" class="panel" style="flex-grow: 1; display: flex; width: 540px; align-self: flex-end; background-color: rgba(117, 245, 244, 0.75);">
+    <ui:Template name="CathegoryItem" src="project://database/Assets/UI/CathegoryItem.uxml?fileID=9197481963319205126&amp;guid=c9c2187979b3341e2b65ae363ce7d69c&amp;type=3#CathegoryItem" />
+    <Style src="project://database/Assets/UI/items-menu.uss?fileID=7433441132597879392&amp;guid=5416644a9b3bc4e64af670d4f5b601fc&amp;type=3" />
+    <ui:VisualElement name="CathegoryPanel" class="panel" style="flex-grow: 1; display: flex; width: 480px; align-self: flex-end;">
         <ui:ListView class="cathegory-list" />
+        <ui:Instance template="CathegoryItem" name="CathegoryItem" />
     </ui:VisualElement>
 </ui:UXML>

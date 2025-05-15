@@ -1,16 +1,25 @@
 .panel {
-    background-color: rgba(117, 245, 244, 0);
+    background-color: rgba(206, 255, 254, 0.78);
     -unity-background-scale-mode: stretch-to-fill;
-    border-top-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-top-left-radius: 18px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-bottom-left-radius: 18px;
+    border-bottom-left-radius: 0;
+    border-left-color: rgba(108, 107, 107, 0.78);
+    border-right-color: rgba(108, 107, 107, 0.78);
+    border-top-color: rgba(108, 107, 107, 0.78);
+    border-bottom-color: rgba(108, 107, 107, 0.78);
 }
 
 .cathegory-list {
     height: 100%;
+}
+
+.cathegory-item {
+    width: 300px;
+    height: 260px;
 }
