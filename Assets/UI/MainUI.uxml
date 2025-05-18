@@ -6,6 +6,6 @@
     </ui:VisualElement>
     <ui:VisualElement name="PiecesPanel" class="panel">
         <ui:Label name="Title" text="Позиции" class="panel-labels" />
-        <ui:ListView item-template="project://database/Assets/UI/CathegoryItem.uxml?fileID=9197481963319205126&amp;guid=c9c2187979b3341e2b65ae363ce7d69c&amp;type=3#CathegoryItem" binding-source-selection-mode="AutoAssign" name="CathegoryList" data-source-path="m_CathegoryItems" virtualization-method="DynamicHeight" class="pieces-list" />
+        <ui:ListView item-template="project://database/Assets/UI/CathegoryItem.uxml?fileID=9197481963319205126&amp;guid=c9c2187979b3341e2b65ae363ce7d69c&amp;type=3#CathegoryItem" binding-source-selection-mode="AutoAssign" name="ItemsList" data-source-path="m_CathegoryItems" virtualization-method="DynamicHeight" class="pieces-list" />
     </ui:VisualElement>
 </ui:UXML>
