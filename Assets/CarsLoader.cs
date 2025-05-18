@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,13 +8,14 @@ public class CarsLoader : MonoBehaviour
 {
     private int m_CurrentCarId;
 
-    [SerializeField] private Car[] m_AvailableCars = default;
+    [SerializeField] private List<Car> m_AvailableCars = default;
     [SerializeField] private GameObject m_SpawnStage = default;
     [SerializeField] private Button m_ChangeCarBtn = default;
+    [SerializeField] private Car m_DefaultCar = default;
 
     private void Awake()
     {
-        SpawnACar(0);
+        SpawnACar(m_AvailableCars.IndexOf(m_DefaultCar));
 
         m_ChangeCarBtn.onClick.AddListener(SpawnNextCar);
     }
@@ -40,7 +42,7 @@ public class CarsLoader : MonoBehaviour
     {
         ClearSpawnPoint();
 
-        if (carId > m_AvailableCars.Length - 1)
+        if (carId > m_AvailableCars.Count - 1)
             Debug.LogError($"Не могу найти автомобиль с ID={carId}");
         else
             GameObject.Instantiate(m_AvailableCars[carId], m_SpawnStage.transform);
@@ -48,12 +50,12 @@ public class CarsLoader : MonoBehaviour
 
     private void SpawnNextCar()
     {
-        if (m_AvailableCars.Length == 0)
+        if (m_AvailableCars.Count == 0)
             return;
 
         m_CurrentCarId++;
 
-        if (m_CurrentCarId > m_AvailableCars.Length - 1)
+        if (m_CurrentCarId > m_AvailableCars.Count - 1)
             m_CurrentCarId = 0;
 
         SpawnACar(m_CurrentCarId);

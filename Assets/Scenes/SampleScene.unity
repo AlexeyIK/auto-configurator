@@ -643,7 +643,7 @@ MonoBehaviour:
   m_MaxDistance: 5
   m_Sensivity: 0.005
   m_PointToObject: {fileID: 421986797}
-  m_Height: 0.5
+  m_Height: 0.25
 --- !u!114 &330585549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1908,7 +1908,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20, y: 20}
+  m_AnchoredPosition: {x: 8, y: 250}
   m_SizeDelta: {x: 220, y: 40}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1899641462
@@ -2409,6 +2409,8 @@ MonoBehaviour:
   - {fileID: 8061921246390331969, guid: bb87e3ed1621249e4ad6b74ff9599f7e, type: 3}
   m_SpawnStage: {fileID: 421986796}
   m_ChangeCarBtn: {fileID: 1899641462}
+  m_DefaultCar: {fileID: 8061921246390331969, guid: bb87e3ed1621249e4ad6b74ff9599f7e,
+    type: 3}
 --- !u!23 &919933667311814732
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="CathegoryItem" data-source-type="CathegoryItemData, Assembly-CSharp" class="cathegory-item" style="flex-grow: 1; background-color: rgb(210, 253, 255); border-top-left-radius: 18px; border-top-right-radius: 18px; border-bottom-right-radius: 18px; border-bottom-left-radius: 18px; background-size: 100% 100%; -unity-background-scale-mode: stretch-to-fill;">
-        <ui:VisualElement name="Image" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI/Images/item-image.png?fileID=2800000&amp;guid=343c26b4991e84d9a956e7772fced9b6&amp;type=3#item-image&quot;); background-position-x: center 0; -unity-background-scale-mode: scale-and-crop; background-color: rgba(192, 192, 192, 0.78);">
+    <Style src="project://database/Assets/UI/items-menu.uss?fileID=7433441132597879392&amp;guid=5416644a9b3bc4e64af670d4f5b601fc&amp;type=3#items-menu" />
+    <ui:VisualElement name="CathegoryItem" data-source-type="CathegoryItemData, Assembly-CSharp" class="cathegory-item">
+        <ui:VisualElement name="Image" class="cathegory-image" style="background-image: url(&quot;project://database/Assets/UI/Images/item-image.png?fileID=2800000&amp;guid=343c26b4991e84d9a956e7772fced9b6&amp;type=3#item-image&quot;); background-position-x: center 0; -unity-background-scale-mode: scale-and-crop; background-color: rgba(192, 192, 192, 0.78);">
             <Bindings>
                 <ui:DataBinding property="style.backgroundImage" data-source-path="m_Image" binding-mode="ToTarget" />
             </Bindings>
