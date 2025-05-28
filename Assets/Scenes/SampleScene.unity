@@ -1307,7 +1307,6 @@ GameObject:
   - component: {fileID: 1237188546}
   - component: {fileID: 1237188549}
   - component: {fileID: 1237188548}
-  - component: {fileID: 1237188547}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -1330,29 +1329,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1393728015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1237188547
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237188545}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!23 &1237188548
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1553,7 +1529,7 @@ GameObject:
   - component: {fileID: 1393728015}
   - component: {fileID: 1393728018}
   - component: {fileID: 1393728017}
-  - component: {fileID: 1393728016}
+  - component: {fileID: 1393728021}
   - component: {fileID: 1393728019}
   - component: {fileID: 1393728020}
   m_Layer: 0
@@ -1579,29 +1555,6 @@ Transform:
   - {fileID: 1237188546}
   m_Father: {fileID: 8147340978543381558}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1393728016
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1393728014}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1393728017
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1683,6 +1636,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d091e46ee9df844579c3767722aea0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &1393728021
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393728014}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1640037750
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,8 +2380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AvailableCars:
-  - {fileID: 6652876134793673929, guid: d1be251991287432aa59ea8bbc0ec471, type: 3}
   - {fileID: 8061921246390331969, guid: bb87e3ed1621249e4ad6b74ff9599f7e, type: 3}
+  - {fileID: 6652876134793673929, guid: d1be251991287432aa59ea8bbc0ec471, type: 3}
   m_SpawnStage: {fileID: 421986796}
   m_ChangeCarBtn: {fileID: 1899641462}
   m_DefaultCar: {fileID: 8061921246390331969, guid: bb87e3ed1621249e4ad6b74ff9599f7e,
@@ -2960,7 +2935,6 @@ GameObject:
   - component: {fileID: 1936270859404064466}
   - component: {fileID: 91697821288611226}
   - component: {fileID: 4729158939804277428}
-  - component: {fileID: 4729158939804277429}
   m_Layer: 0
   m_Name: Object_20
   m_TagString: Untagged
@@ -3273,27 +3247,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4729158939804277429
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3265888745214657518}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.8693663, y: 0.00000011920935, z: 1.9659061}
-  m_Center: {x: -0.073465884, y: -0.0003414155, z: 7.2754476e-16}
 --- !u!1 &4910094428688821187
 GameObject:
   m_ObjectHideFlags: 0
