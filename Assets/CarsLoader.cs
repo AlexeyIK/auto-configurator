@@ -65,6 +65,9 @@ public class CarsLoader : MonoBehaviour
     {
         // сначала удаляем предыдущую модель авто с пьедестала
         foreach (Transform child in m_SpawnStage.transform)
+        {
+            child.gameObject.SetActive(false);
             GameObject.Destroy(child.gameObject);
+        }
     }
 }
