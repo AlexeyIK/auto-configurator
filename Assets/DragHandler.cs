@@ -43,9 +43,9 @@ public class DragHandler : MonoBehaviour
         m_PointerPositionAction = InputSystem.actions.FindAction("DragPosition");
         m_PointerDeltaAction = InputSystem.actions.FindAction("DragDelta");
 
-        m_PressAction.Enable();
-        m_PointerPositionAction.Enable();
-        m_PointerDeltaAction.Enable();
+        //m_PressAction.Enable();
+        //m_PointerPositionAction.Enable();
+        //m_PointerDeltaAction.Enable();
 
         m_PointerDeltaAction.performed += OnDeltaChange;
         m_PointerPositionAction.performed += OnPointerPositionChange;

@@ -1,0 +1,134 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(Collider))]
+[DisallowMultipleComponent]
+public class InteractionHandler : MonoBehaviour
+{
+    private bool _isHover;
+    private bool _isCaptured;
+    private Camera _camera;
+
+    private Outline _outline;
+
+    private InputAction _pointerClickAction;
+    private InputAction _pointerPositionAction;
+
+    [SerializeField] private bool _debugMode = false;
+    [SerializeField] private Material _hoverMaterial = default;
+    [SerializeField] private Material _clickMaterial = default;
+
+    [SerializeField] private MeshRenderer[] _meshes = default;
+    [SerializeField] private List<Material> _defaultMaterials = default;
+
+    public UnityEvent OnHoverStart;
+    public UnityEvent OnHoverEnd;
+
+    public UnityEvent<GameObject> OnClick;
+    public UnityEvent<GameObject> OnRelease;
+
+    private void Awake()
+    {
+        _camera = Camera.main;
+
+        _outline = gameObject.AddComponent<Outline>();
+        _outline.OutlineMode = Outline.Mode.OutlineAll;
+        _outline.OutlineColor = Color.red;
+        _outline.OutlineWidth = 4f;
+        _outline.enabled = false;
+
+        var meshCounter = 0;
+
+        foreach (var meshRenderer in _meshes)
+        {
+            _defaultMaterials.Add(meshRenderer.material);
+            meshCounter++;
+        }
+
+        _pointerPositionAction = InputSystem.actions.FindAction("DragPosition");
+        _pointerClickAction = InputSystem.actions.FindAction("Click");
+
+        _pointerPositionAction.performed += OnPointerMove;
+        _pointerClickAction.performed += OnPointerClick;
+    }
+
+    private void OnDestroy()
+    {
+        _pointerPositionAction.performed -= OnPointerMove;
+        _pointerClickAction.performed -= OnPointerClick;
+
+        var collider = GetComponentInChildren<Collider>();
+        collider.enabled = false;
+    }
+
+    private void OnPointerClick(InputAction.CallbackContext context)
+    {
+        var isPressed = context.ReadValueAsButton();
+
+        if (_isHover && isPressed)
+        {
+            SwitchOutline(true, true);
+
+            if (_debugMode)
+                Debug.Log($"[{context.ReadValueAsButton()}] Click on object {gameObject.name}");
+
+            _isCaptured = true;
+            OnClick?.Invoke(gameObject);
+        }
+        else if (_isCaptured)
+        {
+            SwitchOutline(false);
+
+            if (_debugMode)
+                Debug.Log($"[{context.ReadValueAsButton()}] Release object {gameObject.name}");
+
+            _isCaptured = false;
+            OnRelease?.Invoke(gameObject);
+        }
+    }
+
+    private void OnPointerMove(InputAction.CallbackContext context)
+    {
+        Vector2 mousePosition = context.ReadValue<Vector2>();
+        Ray ray = _camera.ScreenPointToRay(mousePosition);
+
+        if (Physics.Raycast(ray, out var hit, 10))
+        {
+            if (hit.transform == transform)
+            {
+                if (!_isHover)
+                    PointerEnter();
+
+                return;
+            }
+        }
+
+        if (_isHover)
+            PointerLeave();
+    }
+
+    public void PointerEnter()
+    {
+        SwitchOutline(true);
+
+        _isHover = true;
+        OnHoverStart?.Invoke();
+    }
+
+    public void PointerLeave()
+    {
+        SwitchOutline(false);
+
+        _isHover = false;
+        OnHoverEnd?.Invoke();
+    }
+
+    private void SwitchOutline(bool isEnable, bool isPress = false)
+    {
+        _outline.OutlineColor = isPress ? Color.cyan : Color.red;
+        _outline.enabled = isEnable;
+    }
+}
