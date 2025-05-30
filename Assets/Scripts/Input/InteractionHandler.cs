@@ -18,6 +18,8 @@ public class InteractionHandler : MonoBehaviour
     private InputAction _pointerPositionAction;
 
     [SerializeField] private bool _debugMode = false;
+    [SerializeField] private bool _hoverHighlight = true;
+    [SerializeField] private bool _clickHighlight = true;
 
     public UnityEvent OnHoverStart;
     public UnityEvent OnHoverEnd;
@@ -57,7 +59,8 @@ public class InteractionHandler : MonoBehaviour
 
         if (_isHover && isPressed)
         {
-            SwitchOutline(true, true);
+            if (_clickHighlight)
+                SwitchOutline(true, true);
 
             if (_debugMode)
                 Debug.Log($"[{context.ReadValueAsButton()}] Click on object {gameObject.name}");
@@ -99,7 +102,8 @@ public class InteractionHandler : MonoBehaviour
 
     public void PointerEnter()
     {
-        SwitchOutline(true);
+        if (_hoverHighlight)
+            SwitchOutline(true);
 
         _isHover = true;
         OnHoverStart?.Invoke();

@@ -1287,14 +1287,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4d2227a720a47519968d7e52dd5aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CathegoryItems:
-  - m_Id: 1
-    m_Caption: "\u0426\u0432\u0435\u0442 \u043A\u0443\u0437\u043E\u0432\u0430"
-    m_ImageUrl: 
-    m_Image: {fileID: 2800000, guid: 343c26b4991e84d9a956e7772fced9b6, type: 3}
-  - m_Id: 1
-    m_Caption: "\u0426\u0432\u0435\u0442 \u043A\u0443\u0437\u043E\u0432\u0430"
-    m_ImageUrl: 
+  useMockData: 1
+  mockData: {fileID: 11400000, guid: 996f45deed3c14a6e8e25a9e32b4a646, type: 2}
+  missClickHandler: {fileID: 4729158939804277430}
+  cathegoryItems: []
+  selectedCathegory:
+    m_Id: 1
+    m_Type: 0
+    m_Caption: Cathegory Name
+    m_ImageUrl: https://
     m_Image: {fileID: 0}
 --- !u!1 &1237188545
 GameObject:
@@ -2935,8 +2936,10 @@ GameObject:
   - component: {fileID: 1936270859404064466}
   - component: {fileID: 91697821288611226}
   - component: {fileID: 4729158939804277428}
+  - component: {fileID: 4729158939804277429}
+  - component: {fileID: 4729158939804277430}
   m_Layer: 0
-  m_Name: Object_20
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3247,6 +3250,54 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4729158939804277429
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265888745214657518}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8693663, y: 0.00000011920935, z: 1.9659061}
+  m_Center: {x: -0.073465884, y: -0.0003414155, z: 7.2754476e-16}
+--- !u!114 &4729158939804277430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3265888745214657518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugMode: 1
+  _hoverHighlight: 0
+  _clickHighlight: 0
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4910094428688821187
 GameObject:
   m_ObjectHideFlags: 0

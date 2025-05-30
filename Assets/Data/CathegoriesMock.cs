@@ -6,5 +6,7 @@ using UnityEngine.UIElements;
 public class CathegoriesMock : ScriptableObject
 {
     [SerializeField] private List<CathegoryItemData> m_CathegoryItems;
+
+    public List<CathegoryItemData> CathegoryItems => m_CathegoryItems;
 }
 

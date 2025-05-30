@@ -123,10 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugMode: 1
-  _hoverMaterial: {fileID: 0}
-  _clickMaterial: {fileID: 0}
-  _meshes: []
-  _defaultMaterials: []
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -2534,6 +2530,7 @@ GameObject:
   - component: {fileID: 8061921246390331969}
   - component: {fileID: 5390918499963542539}
   - component: {fileID: 1073960661178977206}
+  - component: {fileID: 7107458125153373965}
   m_Layer: 0
   m_Name: Mini Cooper S
   m_TagString: Untagged
@@ -2617,8 +2614,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a67e6804151ca41cfbe2513892ea147d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hoverDetector: {fileID: 0}
-  _cathegoryName: 
+  interactionHandlers:
+  - {fileID: 7563638549495692230}
+  - {fileID: 5636219522329625835}
+  - {fileID: 1063716920885534650}
+  - {fileID: 4225943190716383149}
+  - {fileID: 1835683448189047783}
+  - {fileID: 8077385811652504251}
+  - {fileID: 7559377564951267588}
+  cathegory: 0
+--- !u!114 &7107458125153373965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756170497892666879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67e6804151ca41cfbe2513892ea147d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionHandlers:
+  - {fileID: 5571450421579772303}
+  - {fileID: 1161922554220808117}
+  cathegory: 1
 --- !u!1 &761135551122886481
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,10 +3320,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugMode: 0
-  _hoverMaterial: {fileID: 0}
-  _clickMaterial: {fileID: 0}
-  _meshes: []
-  _defaultMaterials: []
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -3417,11 +3433,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugMode: 0
-  _hoverMaterial: {fileID: 2100000, guid: 973a7b4718cb9477292fdabb5271f862, type: 2}
-  _clickMaterial: {fileID: 0}
-  _meshes:
-  - {fileID: 3934301068863363401}
-  _defaultMaterials: []
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -4587,11 +4598,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugMode: 1
-  _hoverMaterial: {fileID: 2100000, guid: 973a7b4718cb9477292fdabb5271f862, type: 2}
-  _clickMaterial: {fileID: 0}
-  _meshes:
-  - {fileID: 6267846380973079178}
-  _defaultMaterials: []
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -6670,10 +6676,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugMode: 0
-  _hoverMaterial: {fileID: 0}
-  _clickMaterial: {fileID: 0}
-  _meshes: []
-  _defaultMaterials: []
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -8038,7 +8040,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2544180473350668361}
   - component: {fileID: 5571450421579772303}
-  - component: {fileID: 8727053180781894460}
   - component: {fileID: 8273211819091825185}
   m_Layer: 0
   m_Name: RearWheels
@@ -8076,11 +8077,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugMode: 1
-  _hoverMaterial: {fileID: 2100000, guid: 973a7b4718cb9477292fdabb5271f862, type: 2}
-  _clickMaterial: {fileID: 0}
-  _meshes:
-  - {fileID: 7324663758176822449}
-  _defaultMaterials: []
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -8093,18 +8089,6 @@ MonoBehaviour:
   OnRelease:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8727053180781894460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3142077524196821745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f76ff3a6f68814f0ea29b40ef9a4604a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &8273211819091825185
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8593,10 +8577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugMode: 0
-  _hoverMaterial: {fileID: 0}
-  _clickMaterial: {fileID: 0}
-  _meshes: []
-  _defaultMaterials: []
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -9462,10 +9442,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugMode: 0
-  _hoverMaterial: {fileID: 0}
-  _clickMaterial: {fileID: 0}
-  _meshes: []
-  _defaultMaterials: []
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -11125,10 +11101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugMode: 0
-  _hoverMaterial: {fileID: 0}
-  _clickMaterial: {fileID: 0}
-  _meshes: []
-  _defaultMaterials: []
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -16365,11 +16337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugMode: 1
-  _hoverMaterial: {fileID: 2100000, guid: 973a7b4718cb9477292fdabb5271f862, type: 2}
-  _clickMaterial: {fileID: 0}
-  _meshes:
-  - {fileID: 7527791787151160221}
-  _defaultMaterials: []
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -19267,6 +19234,8 @@ GameObject:
   - component: {fileID: 7761171193169040735}
   - component: {fileID: 5859140332579985369}
   - component: {fileID: 6980309441437186847}
+  - component: {fileID: 3086350623744389223}
+  - component: {fileID: 7559377564951267588}
   m_Layer: 0
   m_Name: Object255
   m_TagString: Untagged
@@ -19342,6 +19311,53 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3086350623744389223
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916216978378207239}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4839105884980328052, guid: 476eb92f9d8924698a671108f6af3d82, type: 3}
+--- !u!114 &7559377564951267588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916216978378207239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugMode: 1
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7919626473496253084
 GameObject:
   m_ObjectHideFlags: 0

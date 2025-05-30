@@ -33,16 +33,24 @@
     background-color: rgba(255, 255, 255, 0);
 }
 
+.cathegory-list .unity-list-view__item:selected {
+    color: black;
+    background-color: transparent;
+}
+
+.cathegory-list .unity-list-view__item:hover {
+    background-color: transparent;
+}
+
 .cathegory-item {
     align-self: center;
-    width: 280px;
+    width: 276px;
     height: 240px;
-    margin-top: 0;
     margin-bottom: 8px;
     padding: 2px;
     background-color: white;
     border-radius: 8px;
-    border-width: 2px;
+    border-width: 3px;
     border-color: rgba(108, 107, 107, 0.4);
 }
 
@@ -50,6 +58,11 @@
     background-color: rgba(142, 200, 237, 0.5);
     border-width: 2px;
     border-color: rgb(142, 200, 237);
+}
+
+.list-item-selected {
+    border-width: 2px;
+    border-color: rgb(35, 148, 220);
 }
 
 .cathegory-image {
