@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3112314994028531043}
   - component: {fileID: 5392715242144328659}
   - component: {fileID: 2042222972432764739}
+  - component: {fileID: 6470026157319070836}
+  - component: {fileID: 1835683448189047783}
   m_Layer: 0
   m_Name: Object006
   m_TagString: Untagged
@@ -86,6 +88,57 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6470026157319070836
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836427690723773}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6980054032363594708, guid: 476eb92f9d8924698a671108f6af3d82, type: 3}
+--- !u!114 &1835683448189047783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8836427690723773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugMode: 1
+  _hoverMaterial: {fileID: 0}
+  _clickMaterial: {fileID: 0}
+  _meshes: []
+  _defaultMaterials: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &19834839781285764
 GameObject:
   m_ObjectHideFlags: 0
@@ -16200,6 +16253,8 @@ GameObject:
   - component: {fileID: 6257655516713817629}
   - component: {fileID: 8515461016728656059}
   - component: {fileID: 7527791787151160221}
+  - component: {fileID: 6513687937014636449}
+  - component: {fileID: 8077385811652504251}
   m_Layer: 0
   m_Name: Object003
   m_TagString: Untagged
@@ -16275,6 +16330,58 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6513687937014636449
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6811150163924950526}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5774064269939165763, guid: 476eb92f9d8924698a671108f6af3d82, type: 3}
+--- !u!114 &8077385811652504251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6811150163924950526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugMode: 1
+  _hoverMaterial: {fileID: 2100000, guid: 973a7b4718cb9477292fdabb5271f862, type: 2}
+  _clickMaterial: {fileID: 0}
+  _meshes:
+  - {fileID: 7527791787151160221}
+  _defaultMaterials: []
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6822434883473289460
 GameObject:
   m_ObjectHideFlags: 0

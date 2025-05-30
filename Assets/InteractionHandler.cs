@@ -18,11 +18,6 @@ public class InteractionHandler : MonoBehaviour
     private InputAction _pointerPositionAction;
 
     [SerializeField] private bool _debugMode = false;
-    [SerializeField] private Material _hoverMaterial = default;
-    [SerializeField] private Material _clickMaterial = default;
-
-    [SerializeField] private MeshRenderer[] _meshes = default;
-    [SerializeField] private List<Material> _defaultMaterials = default;
 
     public UnityEvent OnHoverStart;
     public UnityEvent OnHoverEnd;
@@ -39,14 +34,6 @@ public class InteractionHandler : MonoBehaviour
         _outline.OutlineColor = Color.red;
         _outline.OutlineWidth = 4f;
         _outline.enabled = false;
-
-        var meshCounter = 0;
-
-        foreach (var meshRenderer in _meshes)
-        {
-            _defaultMaterials.Add(meshRenderer.material);
-            meshCounter++;
-        }
 
         _pointerPositionAction = InputSystem.actions.FindAction("DragPosition");
         _pointerClickAction = InputSystem.actions.FindAction("Click");

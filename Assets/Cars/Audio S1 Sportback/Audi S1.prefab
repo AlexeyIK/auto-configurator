@@ -2274,6 +2274,8 @@ GameObject:
   - component: {fileID: 8059694611268841398}
   - component: {fileID: 7764681453050949756}
   - component: {fileID: 6529791766267911545}
+  - component: {fileID: 758253659252012360}
+  - component: {fileID: 8305664436686559257}
   m_Layer: 0
   m_Name: A:car_audi_s1sportback_2014_Mesh_lod0M_Paint_Metal_High_A:phong5SG1_0
   m_TagString: Untagged
@@ -2349,6 +2351,53 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &758253659252012360
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126875953035970198}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 501074168921004227, guid: 241c0e4f9dd2b4c4bae77b7d7710a39c, type: 3}
+--- !u!114 &8305664436686559257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4126875953035970198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugMode: 1
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4188475163953004836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,17 +2662,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HoverMaterial: {fileID: 2100000, guid: 973a7b4718cb9477292fdabb5271f862, type: 2}
-  m_Meshes:
-  - {fileID: 5209918014769386656}
-  - {fileID: 610318432134294985}
-  - {fileID: 635465108441724825}
-  - {fileID: 4678730083053366121}
-  - {fileID: 2235240897710399910}
-  - {fileID: 7609419778176608916}
-  - {fileID: 9153833437233140076}
-  - {fileID: 5879291479913200737}
-  m_DefaultMaterials: []
+  _debugMode: 0
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3876117996389199773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2701,9 +2752,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579959813534744092}
-  - component: {fileID: 4264783378167529614}
-  - component: {fileID: 6342422088321012046}
   - component: {fileID: 7093389930913696447}
+  - component: {fileID: 4264783378167529614}
   m_Layer: 0
   m_Name: FrontWheels
   m_TagString: Untagged
@@ -2728,41 +2778,6 @@ Transform:
   - {fileID: 7431347836271905575}
   m_Father: {fileID: 5361264303840033006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4264783378167529614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4928008747247838910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HoverMaterial: {fileID: 2100000, guid: 973a7b4718cb9477292fdabb5271f862, type: 2}
-  m_Meshes:
-  - {fileID: 6283355654292673956}
-  - {fileID: 2075064692156937849}
-  - {fileID: 3693939046858612913}
-  - {fileID: 229583912549736531}
-  - {fileID: 5601428415696855063}
-  - {fileID: 4200417063604835362}
-  - {fileID: 1050169481121648904}
-  - {fileID: 8355307484599706124}
-  m_DefaultMaterials: []
---- !u!114 &6342422088321012046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4928008747247838910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f76ff3a6f68814f0ea29b40ef9a4604a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &7093389930913696447
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2786,6 +2801,31 @@ CapsuleCollider:
   m_Height: 2.2
   m_Direction: 0
   m_Center: {x: 0, y: 0.1, z: 1.11}
+--- !u!114 &4264783378167529614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928008747247838910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _debugMode: 1
+  OnHoverStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHoverEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRelease:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5070643919256574571
 GameObject:
   m_ObjectHideFlags: 0
