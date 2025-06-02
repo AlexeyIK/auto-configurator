@@ -70,6 +70,41 @@
     border-radius: 6px 6px 0 0;
 }
 
+.pieces-item {
+    align-self: center;
+    width: 240px;
+    height: 240px;
+    margin-bottom: 8px;
+    padding: 2px;
+    background-color: white;
+    border-radius: 8px;
+    border-width: 3px;
+    border-color: rgba(108, 107, 107, 0.4);
+}
+
+.pieces-item:hover {
+    background-color: rgba(142, 200, 237, 0.5);
+    border-width: 2px;
+    border-color: rgb(142, 200, 237);
+}
+
+.pieces-item-caption {
+    font-size: 18px;
+    -unity-text-align: middle-left;
+}
+
+.pieces-item-descr {
+    font-size: 14px;
+    -unity-text-align: upper-left;
+}
+
+.pieces-item-image {
+    flex-grow: 1;
+    height: 50%;
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+}
+
 #PiecesPanel {
     height: 300px;
     width: 100%;

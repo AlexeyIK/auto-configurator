@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/items-menu.uss?fileID=7433441132597879392&amp;guid=5416644a9b3bc4e64af670d4f5b601fc&amp;type=3#items-menu" />
+    <ui:VisualElement name="PartsItem" data-source-type="CathegoryItemData, Assembly-CSharp" class="pieces-item">
+        <ui:VisualElement name="Image" class="parts-item-image pieces-item-image" style="background-image: url(&quot;project://database/Assets/UI/Images/item-body.png?fileID=2800000&amp;guid=343c26b4991e84d9a956e7772fced9b6&amp;type=3#item-body&quot;); background-position-x: center 0; -unity-background-scale-mode: scale-and-crop; background-color: rgba(192, 192, 192, 0.78);">
+            <Bindings>
+                <ui:DataBinding property="style.backgroundImage" data-source-path="m_Image" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:VisualElement>
+        <ui:Label name="Name" text="Name" class="parts-item-caption pieces-item-caption">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="m_Caption" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
+        <ui:Label name="Description" text="Name" class="parts-item-descr pieces-item-descr">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="m_Caption" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
+    </ui:VisualElement>
+</ui:UXML>

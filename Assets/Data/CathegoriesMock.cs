@@ -9,4 +9,3 @@ public class CathegoriesMock : ScriptableObject
 
     public List<CathegoryItemData> CathegoryItems => m_CathegoryItems;
 }
-

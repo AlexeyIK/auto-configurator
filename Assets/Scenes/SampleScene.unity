@@ -1233,6 +1233,7 @@ GameObject:
   - component: {fileID: 973341972}
   - component: {fileID: 973341971}
   - component: {fileID: 973341973}
+  - component: {fileID: 973341974}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -1287,16 +1288,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4d2227a720a47519968d7e52dd5aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useMockData: 1
-  mockData: {fileID: 11400000, guid: 996f45deed3c14a6e8e25a9e32b4a646, type: 2}
-  missClickHandler: {fileID: 4729158939804277430}
-  cathegoryItems: []
-  selectedCathegory:
-    m_Id: 1
-    m_Type: 0
-    m_Caption: Cathegory Name
-    m_ImageUrl: https://
-    m_Image: {fileID: 0}
+  m_UseMockData: 1
+  m_MockData: {fileID: 11400000, guid: 996f45deed3c14a6e8e25a9e32b4a646, type: 2}
+  m_MissClickHandler: {fileID: 4729158939804277430}
+  CathegoryItems: []
+--- !u!114 &973341974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973341970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2901a8c64dcb046348b6bbfd19d85219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UseMockData: 1
+  m_MockData: {fileID: 11400000, guid: 53ec2cb5ac3274d298bae98371799a02, type: 2}
+  m_CathegoriesController: {fileID: 973341973}
+  Items: []
 --- !u!1 &1237188545
 GameObject:
   m_ObjectHideFlags: 0
