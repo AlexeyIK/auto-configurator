@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [DisallowMultipleComponent]
-public class ItemsController : MonoBehaviour
+public class PiecesItemsController : MonoBehaviour
 {
     private UIDocument _UIDocument;
-    private ListView _itemsList;
+    private StackPanelView _itemsList;
 
     [SerializeField] private bool m_UseMockData = false;
     [SerializeField] private ItemsMock m_MockData = default;
@@ -25,12 +25,10 @@ public class ItemsController : MonoBehaviour
 
         m_CathegoriesController = GetComponent<CathegoriesController>();
 
-        _itemsList = _UIDocument.rootVisualElement.Q<ListView>("ItemsList");
-        _itemsList.dataSource = Items;
-
-        HidePanel();
+        _itemsList = _UIDocument.rootVisualElement.Q<StackPanelView>("ItemsScrollView");
 
         m_CathegoriesController.OnSelectedCathegoryChange += OnCathegoryChange;
+        HidePanel();
     }
 
     private void OnDestroy()
@@ -69,7 +67,7 @@ public class ItemsController : MonoBehaviour
     private void ShowPanel(string caption)
     {
         _itemsList.parent.style.display = DisplayStyle.Flex;
-        _itemsList.itemsSource = Items;
+        _itemsList.ItemsSource = Items;
         _UIDocument.rootVisualElement.Q<Label>("ItemsTitle").text = caption;
     }
 }

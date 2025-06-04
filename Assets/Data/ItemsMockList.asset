@@ -17,80 +17,71 @@ MonoBehaviour:
     Items:
     - m_Id: 1
       m_Type: 0
-      m_Caption: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439"
+      m_Manufacturer: "\u0417\u0435\u043B\u0435\u043D\u044B\u0439"
+      m_ModelName: 
       m_ImageUrl: 
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 2800000, guid: 8c63e19e4dce545f689539da12bca6de, type: 3}
     - m_Id: 2
       m_Type: 0
-      m_Caption: "\u0417\u0435\u043B\u0435\u043D\u044B\u0439"
+      m_Manufacturer: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439"
+      m_ModelName: 
       m_ImageUrl: 
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 2800000, guid: 3e9211cbfd69e477aae6b9d78363380c, type: 3}
     - m_Id: 3
       m_Type: 0
-      m_Caption: "\u0411\u0435\u043B\u044B\u0439"
+      m_Manufacturer: "\u0421\u0438\u043D\u0438\u0439"
+      m_ModelName: 
       m_ImageUrl: 
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 2800000, guid: d5190f1a8d3de4ef3965ec0e0cb0bc1d, type: 3}
     - m_Id: 4
       m_Type: 0
-      m_Caption: "\u0421\u0438\u043D\u0438\u0439"
+      m_Manufacturer: "\u0427\u0435\u0440\u043D\u044B\u0439"
+      m_ModelName: 
       m_ImageUrl: 
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 2800000, guid: 550e835711d4a4a99b1293958d2b70c0, type: 3}
     - m_Id: 5
       m_Type: 0
-      m_Caption: "\u0427\u0435\u0440\u043D\u044B\u0439"
+      m_Manufacturer: "\u0411\u0435\u043B\u044B\u0439"
+      m_ModelName: 
       m_ImageUrl: 
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 2800000, guid: b577dcf06b72e4a7d8b4c429eb665fff, type: 3}
+    - m_Id: 5
+      m_Type: 0
+      m_Manufacturer: "\u0411\u0435\u043B\u044B\u0439"
+      m_ModelName: 
+      m_ImageUrl: 
+      m_Image: {fileID: 2800000, guid: b577dcf06b72e4a7d8b4c429eb665fff, type: 3}
   - CathegoryType: 1
     Items:
     - m_Id: 1
-      m_Type: 0
-      m_Caption: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439"
+      m_Type: 1
+      m_Manufacturer: Audi
+      m_ModelName: Stock
       m_ImageUrl: 
       m_Image: {fileID: 0}
     - m_Id: 2
-      m_Type: 0
-      m_Caption: "\u0417\u0435\u043B\u0435\u043D\u044B\u0439"
-      m_ImageUrl: 
-      m_Image: {fileID: 0}
-    - m_Id: 3
-      m_Type: 0
-      m_Caption: "\u0411\u0435\u043B\u044B\u0439"
-      m_ImageUrl: 
-      m_Image: {fileID: 0}
-    - m_Id: 4
-      m_Type: 0
-      m_Caption: "\u0421\u0438\u043D\u0438\u0439"
-      m_ImageUrl: 
-      m_Image: {fileID: 0}
-    - m_Id: 5
-      m_Type: 0
-      m_Caption: "\u0427\u0435\u0440\u043D\u044B\u0439"
+      m_Type: 1
+      m_Manufacturer: O.Z.
+      m_ModelName: Racing
       m_ImageUrl: 
       m_Image: {fileID: 0}
   - CathegoryType: 2
     Items:
     - m_Id: 1
-      m_Type: 0
-      m_Caption: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439"
+      m_Type: 2
+      m_Manufacturer: Bridgestone
+      m_ModelName: Turanza
       m_ImageUrl: 
       m_Image: {fileID: 0}
     - m_Id: 2
-      m_Type: 0
-      m_Caption: "\u0417\u0435\u043B\u0435\u043D\u044B\u0439"
+      m_Type: 2
+      m_Manufacturer: Nokian
+      m_ModelName: Nordman SZ
       m_ImageUrl: 
       m_Image: {fileID: 0}
     - m_Id: 3
       m_Type: 0
-      m_Caption: "\u0411\u0435\u043B\u044B\u0439"
-      m_ImageUrl: 
-      m_Image: {fileID: 0}
-    - m_Id: 4
-      m_Type: 0
-      m_Caption: "\u0421\u0438\u043D\u0438\u0439"
-      m_ImageUrl: 
-      m_Image: {fileID: 0}
-    - m_Id: 5
-      m_Type: 0
-      m_Caption: "\u0427\u0435\u0440\u043D\u044B\u0439"
+      m_Manufacturer: Pirelli
+      m_ModelName: Scorpion
       m_ImageUrl: 
       m_Image: {fileID: 0}

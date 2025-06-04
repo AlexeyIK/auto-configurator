@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-//[CreateAssetMenu(fileName = "CathegoryItemData", menuName = "Data Mock/Create Cathegory Item", order = 1)]
 [Serializable]
 public class CathegoryItemData : ICathegoryItemData
 {
