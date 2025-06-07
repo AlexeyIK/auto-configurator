@@ -1,5 +1,5 @@
 .panel {
-    background-color: rgba(206, 255, 254, 0.75);
+    background-color: rgba(206, 255, 254, 0.62);
     border-width: 2px;
     border-left-color: rgba(115, 107, 107, 0.5);
     border-right-color: rgba(115, 107, 107, 0.5);
