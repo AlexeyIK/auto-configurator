@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpawnPoint: {fileID: 421986797}
   m_RotateSpeed: -2
-  m_DragRotateSensivity: 1
+  m_DragRotateSensivity: 0.25
   m_RotatePause: 1
 --- !u!114 &1393728020
 MonoBehaviour:
