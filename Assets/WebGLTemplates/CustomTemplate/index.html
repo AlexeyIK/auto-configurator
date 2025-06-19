@@ -18,13 +18,13 @@
         <a href="/">Главная</a>
         <a href="#">О нас</a>
       </nav>
-      <button id="login-btn" class="header-button" onclick="showLoginForm()">
+      <button class="header-button" onclick="showLoginForm()">
         Вход
       </button>
     </header>
     <div id="cover">
       <h1>Гараж 3D</h1>
-      <img src="TemplateData/images/cover.png" alt="Гараж 3D обложка"/>
+      <img src="TemplateData/images/cover.jpg" alt="Гараж 3D обложка"/>
       <div id="unity-container">
         <canvas id="unity-canvas" width={{{ WIDTH }}} height={{{ HEIGHT }}} tabindex="-1"></canvas>
         <div id="unity-loading-bar">
@@ -41,7 +41,7 @@
         <p><b>Гараж 3D</b> — это уникальный проект, визуализирующий модификации автомобилей различных марок вашими руками, из реалистичных деталей и с высоким качеством графики и детализации!</p>
         <p>В ваших руках инструмент, позволяющий спроектировать любые модификации и доработки вашего авто, а для корпоративных клиентов — возможность загружать свои модели автомобилей, деталей для них и весь спектр внешних модификаций от покраски, до тюнинга.</p>
         <div class="centered mt-32 mb-32">
-          <button id="login-btn" class="main-button" onclick="showLoginForm()">
+          <button class="main-button" onclick="showRegistrationForm()">
             Хочу попробовать!
           </button>
         </div>
@@ -154,9 +154,11 @@
         var div = document.createElement('div');
         div.innerHTML = msg;
         warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        if (type === 'error') {
+          div.style = 'background: red; padding: 10px;';
+        }
         else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          if (type === 'warning') div.style = 'background: yellow; padding: 10px;';
           setTimeout(function() {
             warningBanner.removeChild(div);
             updateBannerVisibility();
