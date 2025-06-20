@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Data.ViewModel
 {
@@ -25,7 +26,7 @@ namespace Data.ViewModel
                 TryLoadImage(imageUrl);
         }
 
-        private async void TryLoadImage(string imageUrl)
+        public async void TryLoadImage(string imageUrl)
         {
             if (imageUrl.EndsWith(".png") || imageUrl.EndsWith(".jpg"))
                 imageUrl = imageUrl[..imageUrl.LastIndexOf('.')];

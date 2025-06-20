@@ -2534,7 +2534,7 @@ GameObject:
   - component: {fileID: 1073960661178977206}
   - component: {fileID: 7107458125153373965}
   m_Layer: 0
-  m_Name: Mini Cooper S
+  m_Name: MiniCooperS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

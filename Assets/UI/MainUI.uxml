@@ -8,7 +8,7 @@
     <ui:VisualElement style="flex-grow: 1; flex-direction: column-reverse; align-content: auto; align-items: flex-start;">
         <ui:VisualElement name="PiecesPanel" class="panel" style="align-content: flex-end;">
             <ui:Label name="ItemsTitle" text="Позиции" class="panel-labels" />
-            <StackPanelView name="ItemsScrollView" items-element="project://database/Assets/UI/ColorItem.uxml?fileID=9197481963319205126&amp;guid=e5941891fd474481e818787042345525&amp;type=3#ColorItem" gap="8" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" mode="Horizontal" class="pieces-list-view" />
+            <StackPanelView name="ItemsScrollView" items-element="project://database/Assets/UI/PieceItem.uxml?fileID=9197481963319205126&amp;guid=472a877e6d6174d019ed11ed2edb4438&amp;type=3#PieceItem" gap="8" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" mode="Horizontal" class="pieces-list-view" />
         </ui:VisualElement>
         <ui:Button text="Приступить" name="StartProjectBtn" class="secondary-button" style="bottom: 16px; left: 8px;" />
     </ui:VisualElement>

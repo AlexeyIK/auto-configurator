@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -15,6 +15,7 @@ public partial class StackPanelView : ScrollView
     }
 
     private IList m_itemsSource;
+    private VisualElement _selected;
 
     public static readonly BindingId itemsSourceProperty = nameof(ItemsSource);
 
@@ -36,6 +37,10 @@ public partial class StackPanelView : ScrollView
             ArrangeList();
         }
     }
+
+    public VisualElement Selected => _selected;
+
+    public event Action<VisualElement> SelectedChange;
 
     public StackPanelView() : this(null) { }
 
@@ -63,6 +68,8 @@ public partial class StackPanelView : ScrollView
             {
                 var elem = itemsElement.Instantiate();
                 elem.dataSource = ItemsSource[i];
+                elem.userData = ItemsSource[i];
+                MakeSelectable(elem);
                 Add(elem);
 
                 if (gap > 0 && i < ItemsSource.Count - 1)
@@ -83,6 +90,31 @@ public partial class StackPanelView : ScrollView
                 }
             }
         }
+    }
+
+    private void MakeSelectable(VisualElement item)
+    {
+        item.focusable = true;
+        item.RegisterCallback<PointerDownEvent>(_ =>
+        {
+            Select(item);
+        });
+    }
+
+    private void Select(VisualElement elem)
+    {
+        if (_selected == elem)
+            return;
+
+        if (_selected != null)
+            _selected.Children().FirstOrDefault()?.RemoveFromClassList("stack-panel--selected");
+        elem.Children().FirstOrDefault()?.AddToClassList("stack-panel--selected");
+        _selected = elem;
+
+        Debug.Log("Selected change to: " + elem);
+
+        SelectedChange?.Invoke(elem);
+        // тут можешь вызвать свой колбэк / Event
     }
 
     private void OnAttachEvent(AttachToPanelEvent evt)

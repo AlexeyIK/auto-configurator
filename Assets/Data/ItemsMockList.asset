@@ -99,3 +99,9 @@ MonoBehaviour:
       m_ModelName: S1
       m_ImageUrl: CarImages/audi_s1_preview.png
       m_Image: {fileID: 2800000, guid: b1d73fc7e264d458db1fb729429210ab, type: 3}
+    - m_Id: 3
+      m_Type: 99
+      m_Manufacturer: BMW
+      m_ModelName: M5
+      m_ImageUrl: CarImages/bmw_m5_preview.png
+      m_Image: {fileID: 0}

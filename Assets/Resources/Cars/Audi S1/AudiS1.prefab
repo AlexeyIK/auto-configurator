@@ -1638,7 +1638,7 @@ GameObject:
   - component: {fileID: 6652876134793673929}
   - component: {fileID: 1943150165824972078}
   m_Layer: 0
-  m_Name: Audi S1
+  m_Name: AudiS1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

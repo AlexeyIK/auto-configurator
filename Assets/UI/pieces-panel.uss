@@ -34,7 +34,12 @@
 .pieces-item:hover {
     background-color: rgba(142, 200, 237, 0.5);
     border-width: 2px;
-    border-color: rgb(142, 200, 237);
+    border-color: #70B9E6;
+}
+
+.stack-panel--selected {
+    background-image: resource('Images/card_gradient-selected');
+    border-color: #2394DC;
 }
 
 .pieces-item-caption {

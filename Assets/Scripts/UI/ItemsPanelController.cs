@@ -9,9 +9,12 @@ using UnityEngine.UIElements;
 [DisallowMultipleComponent]
 public class ItemsPanelController : PanelControllerBase
 {
+    private List<PieceItemData> _items = new();
     private UIDocument _UIDocument;
     private Label _titleText;
     private StackPanelView _itemsList;
+
+    private CategoryType _selectedCategoryType;
 
     [SerializeField] private bool m_UseMockData = false;
     [SerializeField] private ItemsMock m_MockData = default;
@@ -21,7 +24,17 @@ public class ItemsPanelController : PanelControllerBase
     [SerializeField] private VisualTreeAsset ColorItem = default;
     [SerializeField] private VisualTreeAsset PieceItem = default;
 
-    public List<PieceItemData> Items = new();
+    public List<PieceItemData> Items
+    {
+        get { return _items; }
+        set
+        {
+            _items = value;
+            _itemsList.ItemsSource = Items;
+        }
+    }
+
+    public event Action<PieceItemData, CategoryType> SelectedItemChange;
 
     protected override void Awake()
     {
@@ -33,6 +46,7 @@ public class ItemsPanelController : PanelControllerBase
         m_CathegoriesController = GetComponent<CategoriesPanelController>();
 
         _itemsList = _UIDocument.rootVisualElement.Q<StackPanelView>("ItemsScrollView");
+        _itemsList.SelectedChange += OnItemSelectedChange;
 
         m_CathegoriesController.OnSelectedCathegoryChange += OnCathegoryChange;
         AppStateManager.Instance.StateChange += OnAppStateChange;
@@ -54,6 +68,7 @@ public class ItemsPanelController : PanelControllerBase
                 break;
 
             case AppStateManager.AppState.Start:
+                _selectedCategoryType = CategoryType.Automobiles;
                 ShowAutomobileSelector();
                 break;
 
@@ -72,6 +87,8 @@ public class ItemsPanelController : PanelControllerBase
         }
         else
         {
+            _selectedCategoryType = selectedCategory.Type;
+
             if (m_UseMockData)
             {
                 switch (selectedCategory.Type)
@@ -101,8 +118,29 @@ public class ItemsPanelController : PanelControllerBase
     private void ShowAutomobileSelector()
     {
         _titleText.text = "Автомобили";
-        GetAutomobilesAsync();
+        _itemsList.itemsElement = CarItem;
+
+        if (m_UseMockData)
+        {
+            Items = m_MockData.Items.FirstOrDefault(c => c.CathegoryType == CategoryType.Automobiles).Items;
+            Items.ForEach(i => i.TryLoadImage(i.ImageUrl));
+        }
+        else
+            GetAutomobilesAsync();
+
         ShowPanel();
+    }
+
+    private void OnItemSelectedChange(VisualElement element)
+    {
+        if (element == null)
+        {
+            SelectedItemChange?.Invoke(null, _selectedCategoryType);
+            return;
+        }
+
+        if (element.dataSource is PieceItemData pieceItemData)
+            SelectedItemChange?.Invoke(pieceItemData, _selectedCategoryType);
     }
 
     private void GetCategoryData()
@@ -119,8 +157,6 @@ public class ItemsPanelController : PanelControllerBase
             items.Add(new PieceItemData(auto.Id, CategoryType.Automobiles, auto.AutoBrand.Name, auto.Name, auto.ImageUrl));
 
         Items = items;
-        _itemsList.itemsElement = CarItem;
-        _itemsList.ItemsSource = Items;
     }
 
     protected override void HidePanel()

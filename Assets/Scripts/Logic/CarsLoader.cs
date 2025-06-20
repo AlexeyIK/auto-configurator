@@ -1,63 +1,62 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Data.Model;
+using Data.ViewModel;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CarsLoader : MonoBehaviour
 {
-    private int m_CurrentCarId;
-
     [SerializeField] private List<Car> m_AvailableCars = default;
     [SerializeField] private GameObject m_SpawnStage = default;
     [SerializeField] private Button m_ChangeCarBtn = default;
     [SerializeField] private Car m_DefaultCar = default;
+    [SerializeField] private ItemsPanelController m_ItemsPanel = default;
 
     private void Awake()
     {
-        SpawnACar(m_AvailableCars.IndexOf(m_DefaultCar));
-
-        m_ChangeCarBtn.onClick.AddListener(SpawnNextCar);
+        ClearSpawnPoint();
+        m_ItemsPanel.SelectedItemChange += OnSelectedItemChange;
     }
 
     private void OnDestroy()
     {
-        m_ChangeCarBtn.onClick.RemoveListener(SpawnNextCar);
+        m_ItemsPanel.SelectedItemChange -= OnSelectedItemChange;
     }
 
-    public void SpawnACar(string carId)
+    /// <summary>
+    /// Создание автомобиля по ссылке
+    /// </summary>
+    /// <param name="carPath"></param>
+    public async void SpawnACar(string carPath)
     {
         ClearSpawnPoint();
 
-        // затем ищем авто в базе и создаем модель
-        var spawnCar = m_AvailableCars.FirstOrDefault(c => carId == c.CarID);
+        // очищаем от расширения
+        if (carPath.EndsWith(".asset"))
+            carPath = carPath[..carPath.LastIndexOf('.')];
+
+        var request = Resources.LoadAsync<GameObject>(carPath);
+        while (!request.isDone)
+            await Task.Yield();
+
+        var spawnCar = request.asset as GameObject;
         if (spawnCar == null)
-            Debug.LogError($"Не могу найти автомобиль с ID={carId}");
+            Debug.LogError($"Не могу загрузить автомобиль по ссылке: {carPath}");
         else
             GameObject.Instantiate(spawnCar, m_SpawnStage.transform);
-
     }
 
-    public void SpawnACar(int carId)
+    private async void OnSelectedItemChange(PieceItemData data, CategoryType type)
     {
-        ClearSpawnPoint();
-
-        if (carId > m_AvailableCars.Count - 1)
-            Debug.LogError($"Не могу найти автомобиль с ID={carId}");
-        else
-            GameObject.Instantiate(m_AvailableCars[carId], m_SpawnStage.transform);
-    }
-
-    private void SpawnNextCar()
-    {
-        if (m_AvailableCars.Count == 0)
+        if (type != CategoryType.Automobiles)
             return;
 
-        m_CurrentCarId++;
+        var automobileData = await NetworkManager.GetAsync<Automobile>($"Automobiles/{data.Id}", TokenProvider.Instance.GetToken());
 
-        if (m_CurrentCarId > m_AvailableCars.Count - 1)
-            m_CurrentCarId = 0;
-
-        SpawnACar(m_CurrentCarId);
+        SpawnACar(automobileData.ModelUrl);
     }
 
     private void ClearSpawnPoint()
