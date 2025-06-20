@@ -17,9 +17,26 @@ public class InteractionHandler : MonoBehaviour
     private InputAction _pointerClickAction;
     private InputAction _pointerPositionAction;
 
+    [SerializeField] private bool _isActive = true;
     [SerializeField] private bool _debugMode = false;
     [SerializeField] private bool _hoverHighlight = true;
     [SerializeField] private bool _clickHighlight = true;
+
+    public bool IsActive
+    {
+        get { return _isActive; }
+        set
+        {
+            _isActive = value;
+
+            if (!_isActive)
+            {
+                SwitchOutline(false);
+                _isHover = false;
+                _isCaptured = false;
+            }
+        }
+    }
 
     public UnityEvent OnHoverStart;
     public UnityEvent OnHoverEnd;
@@ -82,6 +99,9 @@ public class InteractionHandler : MonoBehaviour
 
     private void OnPointerMove(InputAction.CallbackContext context)
     {
+        if (!_isActive)
+            return;
+
         Vector2 mousePosition = context.ReadValue<Vector2>();
         Ray ray = _camera.ScreenPointToRay(mousePosition);
 

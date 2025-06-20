@@ -85,3 +85,17 @@ MonoBehaviour:
       m_ModelName: Scorpion
       m_ImageUrl: 
       m_Image: {fileID: 0}
+  - CathegoryType: 99
+    Items:
+    - m_Id: 1
+      m_Type: 99
+      m_Manufacturer: MINI
+      m_ModelName: Cooper s
+      m_ImageUrl: CarImages/mini_f56_s_preview.png
+      m_Image: {fileID: 2800000, guid: c063c99ca54ab41ba9e9a44bdfb4177b, type: 3}
+    - m_Id: 2
+      m_Type: 99
+      m_Manufacturer: Audi
+      m_ModelName: S1
+      m_ImageUrl: CarImages/audi_s1_preview.png
+      m_Image: {fileID: 2800000, guid: b1d73fc7e264d458db1fb729429210ab, type: 3}

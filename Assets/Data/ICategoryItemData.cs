@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface ICathegoryItemData
+public interface ICategoryItemData
 {
     int Id { get; }
     string Caption { get; }

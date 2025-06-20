@@ -1635,7 +1635,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6303208306846268662}
-  - component: {fileID: 5596161394980153824}
   - component: {fileID: 6652876134793673929}
   - component: {fileID: 1943150165824972078}
   m_Layer: 0
@@ -1661,18 +1660,6 @@ Transform:
   - {fileID: 1828616958012484089}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5596161394980153824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3029442986018672993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6efe58cba97541b4b6f8209292dbb83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6652876134793673929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2385,7 +2372,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 1
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -2624,7 +2614,6 @@ GameObject:
   m_Component:
   - component: {fileID: 89780326098104206}
   - component: {fileID: 6989826288599926704}
-  - component: {fileID: 3876117996389199773}
   - component: {fileID: 4747048019748677408}
   m_Layer: 0
   m_Name: RearWheels
@@ -2662,7 +2651,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 0
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -2675,18 +2667,6 @@ MonoBehaviour:
   OnRelease:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3876117996389199773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4639900678385098891}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f76ff3a6f68814f0ea29b40ef9a4604a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &4747048019748677408
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2813,7 +2793,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 1
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []

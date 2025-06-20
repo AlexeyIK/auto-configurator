@@ -1,9 +1,10 @@
 .panel {
-    background-color: rgba(206, 255, 254, 0.62);
+    background-color: rgb(255, 255, 255);
     border-width: 2px;
     border-left-color: rgba(115, 107, 107, 0.5);
     border-right-color: rgba(115, 107, 107, 0.5);
     border-top-color: rgba(115, 107, 107, 0.8);
+    background-image: resource('Images/panel_gradient');
 }
 
 #CathegoryPanel {
@@ -70,62 +71,6 @@
     border-radius: 6px 6px 0 0;
 }
 
-.pieces-item {
-    align-self: center;
-    width: 220px;
-    height: 220px;
-    margin-bottom: 8px;
-    padding: 2px;
-    background-color: white;
-    border-radius: 8px;
-    border-width: 3px;
-    border-color: rgba(108, 107, 107, 0.4);
-}
-
-.pieces-item:hover {
-    background-color: rgba(142, 200, 237, 0.5);
-    border-width: 2px;
-    border-color: rgb(142, 200, 237);
-}
-
-.pieces-item-caption {
-    font-size: 18px;
-    -unity-text-align: middle-left;
-}
-
-.pieces-item-descr {
-    font-size: 14px;
-    -unity-text-align: upper-left;
-}
-
-.pieces-item-image {
-    flex-grow: 1;
-    flex-shrink: 0;
-    width: 100%;
-    border-radius: 6px 6px 0 0;
-}
-
-#PiecesPanel {
-    height: 340px;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-}
-
-#PiecesPanel Label {
-    -unity-text-align: upper-left;
-}
-
-.pieces-list-view {
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 4px;
-    height: 100%;
-    width: 100%;
-    flex-shrink: 1;
-    flex-grow: 0;
-}
-
 .panel-labels {
     font-size: 20px;
     -unity-font-style: bold;
@@ -137,4 +82,12 @@
     height: 38px;
     align-content: center;
     padding: 4px 8px;
+}
+
+.secondary-button {
+    padding: 8px 24px;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: rgb(180, 215, 238);
+    background-color: rgb(242, 242, 250);
 }

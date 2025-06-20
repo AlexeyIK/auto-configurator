@@ -5,19 +5,19 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [DisallowMultipleComponent]
-public class CathegoriesController : MonoBehaviour
+public class CategoriesPanelController : PanelControllerBase
 {
     private UIDocument _UIDocument;
     private ListView _cathegoriesList;
 
-    private CathegoryItemData _selectedCathegory;
+    private CategoryItemData _selectedCathegory;
 
     [SerializeField] private bool m_UseMockData = false;
-    [SerializeField] private CathegoriesMock m_MockData = default;
+    [SerializeField] private CategoriesMock m_MockData = default;
     [SerializeField] private InteractionHandler m_MissClickHandler = default;
 
-    public List<CathegoryItemData> CathegoryItems = new();
-    public CathegoryItemData SelectedCathegory
+    public List<CategoryItemData> CathegoryItems = new();
+    public CategoryItemData SelectedCathegory
     {
         get { return _selectedCathegory; }
         set
@@ -27,27 +27,36 @@ public class CathegoriesController : MonoBehaviour
         }
     }
 
-    public event Action<CathegoryItemData> OnSelectedCathegoryChange;
+    public event Action<CategoryItemData> OnSelectedCathegoryChange;
 
-    private void Awake()
+    protected override void Awake()
     {
-        _UIDocument = GetComponent<UIDocument>();
+        base.Awake();
 
         if (m_UseMockData)
             CathegoryItems = m_MockData.CathegoryItems;
         else
             GetData();
 
-        _cathegoriesList = _UIDocument.rootVisualElement.Q<ListView>("CathegoryList");
+        _cathegoriesList = _panel.Q<ListView>("CathegoryList");
         _cathegoriesList.itemsSource = CathegoryItems;
         _cathegoriesList.selectionChanged += OnCathegorySelection;
 
         m_MissClickHandler.OnClick.AddListener(OnBackgroundClick);
+
+        AppStateManager.Instance.StateChange += OnStateChange;
     }
 
-    public void SelectByType(CathegoryType cathegoryType)
+    private void OnDestroy()
     {
-        var list = _cathegoriesList.itemsSource as List<CathegoryItemData>;
+        AppStateManager.Instance.StateChange -= OnStateChange;
+        m_MissClickHandler.OnClick.RemoveListener(OnBackgroundClick);
+        _cathegoriesList.selectionChanged -= OnCathegorySelection;
+    }
+
+    public void SelectByType(CategoryType cathegoryType)
+    {
+        var list = _cathegoriesList.itemsSource as List<CategoryItemData>;
         SelectedCathegory = list.FirstOrDefault(c => c.Type == cathegoryType);
         if (SelectedCathegory != null)
         {
@@ -67,7 +76,7 @@ public class CathegoriesController : MonoBehaviour
             return;
         }
 
-        if (enumerable.FirstOrDefault() is CathegoryItemData cathegoryItem)
+        if (enumerable.FirstOrDefault() is CategoryItemData cathegoryItem)
         {
             var container = _cathegoriesList.Q<VisualElement>("unity-content-container");
 
@@ -84,17 +93,42 @@ public class CathegoriesController : MonoBehaviour
             SelectedCathegory = cathegoryItem;
         }
 
-        foreach (CathegoryItemData item in enumerable)
+        foreach (CategoryItemData item in enumerable)
             Debug.Log($"Selected item id: {item.Id}");
-    }
-
-    private void OnBackgroundClick(GameObject go)
-    {
-        _cathegoriesList.ClearSelection();
     }
 
     private void GetData()
     {
         throw new NotImplementedException();
+    }
+
+    protected override void OnBackgroundClick(GameObject go)
+    {
+        _cathegoriesList.ClearSelection();
+    }
+
+    protected override VisualElement GetPanelVisualElement()
+    {
+        _UIDocument = GetComponent<UIDocument>();
+        return _UIDocument.rootVisualElement.Q("CathegoryList");
+    }
+
+    private void OnStateChange(AppStateManager.AppState state)
+    {
+        switch (state)
+        {
+            case AppStateManager.AppState.Initial:
+            case AppStateManager.AppState.NetworkError:
+                HidePanel();
+                break;
+
+            case AppStateManager.AppState.Start:
+                HidePanel();
+                break;
+
+            case AppStateManager.AppState.ProjectModification:
+                ShowPanel();
+                break;
+        }
     }
 }

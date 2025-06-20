@@ -7,8 +7,14 @@
     "theme_color": "{{{  SPLASH_SCREEN_STYLE.toLowerCase() === 'light' ? '#fff' : '#000' }}}",
     "description": {{{ JSON.stringify(PRODUCT_DESCRIPTION) }}},
     "icons": [{
-      "src": "TemplateData/icons/unity-logo-{{{ SPLASH_SCREEN_STYLE.toLowerCase() }}}.png",
+      "src": "TemplateData/icons/icon_144x144.png",
       "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "TemplateData/icons/icon_512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }]

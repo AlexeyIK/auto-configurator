@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/pieces-panel.uss?fileID=7433441132597879392&amp;guid=9b6fefa7127ed4961bd013fe80d5b05b&amp;type=3#pieces-panel" />
+    <ui:VisualElement name="CarItem" class="pieces-item">
+        <ui:VisualElement name="Image" class="parts-item-image pieces-item-image">
+            <Bindings>
+                <ui:DataBinding property="style.backgroundImage" data-source-path="m_Image" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:VisualElement>
+        <ui:Label name="Manufacturer" text="Manufacturer" class="parts-item-caption pieces-item-caption" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="m_Manufacturer" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
+        <ui:Label name="ProductName" text="Product Name" class="parts-item-descr pieces-item-descr" style="padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
+            <Bindings>
+                <ui:DataBinding property="text" data-source-path="m_ModelName" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:Label>
+    </ui:VisualElement>
+</ui:UXML>

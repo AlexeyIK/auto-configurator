@@ -1222,6 +1222,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &905986115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 905986117}
+  - component: {fileID: 905986116}
+  m_Layer: 0
+  m_Name: AppStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &905986116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905986115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cae637193fe074b8b8ff56f4911f1287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _appState: 0
+--- !u!4 &905986117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905986115}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.012775884, y: 0.079979524, z: 0.0038531357}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &973341970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,9 +1349,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2901a8c64dcb046348b6bbfd19d85219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UseMockData: 1
+  m_UseMockData: 0
   m_MockData: {fileID: 11400000, guid: 53ec2cb5ac3274d298bae98371799a02, type: 2}
   m_CathegoriesController: {fileID: 973341973}
+  CarItem: {fileID: 9197481963319205126, guid: 64d2e7a19b00b4d20bf1f6d59106c938, type: 3}
+  ColorItem: {fileID: 9197481963319205126, guid: e5941891fd474481e818787042345525,
+    type: 3}
+  PieceItem: {fileID: 9197481963319205126, guid: 472a877e6d6174d019ed11ed2edb4438,
+    type: 3}
   Items: []
 --- !u!1 &1237188545
 GameObject:
@@ -1530,6 +1580,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1277802485}
   m_CullTransparentMesh: 1
+--- !u!1 &1367394958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1367394959}
+  - component: {fileID: 1367394960}
+  m_Layer: 0
+  m_Name: TokenProvider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1367394959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367394958}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.012775884, y: 0.079979524, z: 0.0038531357}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367394960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367394958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f2d1f8d4d97e4f5ca37db22d1b66478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AuthToken: MWFkbWluNi8xOS8yMDI1IDQ6MDc6MjY_UE0
 --- !u!1 &1393728014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,7 +1972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1899641461
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3294,6 +3389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 0
   _debugMode: 1
   _hoverHighlight: 0
   _clickHighlight: 0
@@ -4268,3 +4364,5 @@ SceneRoots:
   - {fileID: 362291534}
   - {fileID: 76645009}
   - {fileID: 973341972}
+  - {fileID: 905986117}
+  - {fileID: 1367394959}

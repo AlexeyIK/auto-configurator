@@ -30,10 +30,8 @@ function hideFormAlert(form = 'loginForm' || 'registrationForm') {
 }
 
 function getCookie(name) {
-    const cookieValue = document.cookie
+    return document.cookie
         .split("; ")
         .find((row) => row.startsWith(`${name}=`))
         ?.split("=")[1];
-
-    return cookieValue;
 }

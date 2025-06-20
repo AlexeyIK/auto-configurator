@@ -122,7 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 1
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -2526,7 +2529,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1141014424177231796}
-  - component: {fileID: 1944646456624916224}
   - component: {fileID: 8061921246390331969}
   - component: {fileID: 5390918499963542539}
   - component: {fileID: 1073960661178977206}
@@ -2554,18 +2556,6 @@ Transform:
   - {fileID: 3461098736937265254}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1944646456624916224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756170497892666879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6efe58cba97541b4b6f8209292dbb83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8061921246390331969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2611,18 +2601,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 756170497892666879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67e6804151ca41cfbe2513892ea147d, type: 3}
+  m_Script: {fileID: 11500000, guid: 20df86b57ff294120bf7add1fca2a7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionHandlers:
-  - {fileID: 7563638549495692230}
-  - {fileID: 5636219522329625835}
   - {fileID: 1063716920885534650}
   - {fileID: 4225943190716383149}
-  - {fileID: 1835683448189047783}
   - {fileID: 8077385811652504251}
+  - {fileID: 7563638549495692230}
+  - {fileID: 5636219522329625835}
+  - {fileID: 1835683448189047783}
+  - {fileID: 1304689236378868198}
   - {fileID: 7559377564951267588}
-  cathegory: 0
+  - {fileID: 3399946897910602027}
+  category: 0
 --- !u!114 &7107458125153373965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2632,13 +2624,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 756170497892666879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a67e6804151ca41cfbe2513892ea147d, type: 3}
+  m_Script: {fileID: 11500000, guid: 20df86b57ff294120bf7add1fca2a7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionHandlers:
   - {fileID: 5571450421579772303}
   - {fileID: 1161922554220808117}
-  cathegory: 1
+  category: 1
 --- !u!1 &761135551122886481
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,7 +3311,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 0
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -3432,7 +3427,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 0
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -4597,7 +4595,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 1
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -6675,7 +6676,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 0
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -8076,7 +8080,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 1
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -8576,7 +8583,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 0
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -9441,7 +9451,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 0
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -11100,7 +11113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 0
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -16336,7 +16352,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 1
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []
@@ -19345,7 +19364,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe49d870b1484b2fb62da6922f5ad4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActive: 1
   _debugMode: 1
+  _hoverHighlight: 1
+  _clickHighlight: 1
   OnHoverStart:
     m_PersistentCalls:
       m_Calls: []

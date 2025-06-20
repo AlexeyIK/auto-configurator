@@ -8,7 +8,7 @@ public class StandRotator : MonoBehaviour
 
     [SerializeField] private Transform m_SpawnPoint = default;
     [SerializeField] private float m_RotateSpeed = -2f;
-    [SerializeField] private float m_DragRotateSensivity = 1f;
+    [SerializeField] private float m_DragRotateSensivity = 0.5f;
     [SerializeField] private float m_RotatePause = 1f;
 
     private void Awake()
