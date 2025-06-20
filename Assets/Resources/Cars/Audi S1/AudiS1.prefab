@@ -1637,6 +1637,8 @@ GameObject:
   - component: {fileID: 6303208306846268662}
   - component: {fileID: 6652876134793673929}
   - component: {fileID: 1943150165824972078}
+  - component: {fileID: 6855149910542645013}
+  - component: {fileID: 7715247365538045764}
   m_Layer: 0
   m_Name: AudiS1
   m_TagString: Untagged
@@ -1689,6 +1691,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Renderers:
   - {fileID: 6529791766267911545}
+--- !u!114 &6855149910542645013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029442986018672993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20df86b57ff294120bf7add1fca2a7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionHandlers:
+  - {fileID: 8305664436686559257}
+  category: 0
+--- !u!114 &7715247365538045764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029442986018672993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20df86b57ff294120bf7add1fca2a7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionHandlers:
+  - {fileID: 4264783378167529614}
+  - {fileID: 6989826288599926704}
+  category: 1
 --- !u!1 &3037329155916913057
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 ﻿using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class TokenProvider : MonoBehaviour

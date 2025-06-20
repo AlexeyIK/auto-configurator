@@ -106,15 +106,11 @@ public partial class StackPanelView : ScrollView
         if (_selected == elem)
             return;
 
-        if (_selected != null)
-            _selected.Children().FirstOrDefault()?.RemoveFromClassList("stack-panel--selected");
+        _selected?.Children().FirstOrDefault()?.RemoveFromClassList("stack-panel--selected");
         elem.Children().FirstOrDefault()?.AddToClassList("stack-panel--selected");
         _selected = elem;
 
-        Debug.Log("Selected change to: " + elem);
-
         SelectedChange?.Invoke(elem);
-        // тут можешь вызвать свой колбэк / Event
     }
 
     private void OnAttachEvent(AttachToPanelEvent evt)

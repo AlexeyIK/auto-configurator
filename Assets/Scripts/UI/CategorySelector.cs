@@ -30,30 +30,18 @@ public class CategorySelector : MonoBehaviour
 
         foreach (var interaction in interactionHandlers)
             interaction.OnClick.AddListener(OnPartClick);
-
-        AppStateManager.Instance.StateChange += OnAppStateChange;
-    }
-
-    private void OnAppStateChange(AppStateManager.AppState state)
-    {
-        if (state == AppStateManager.AppState.ProjectModification)
-        {
-            foreach (var interaction in interactionHandlers)
-                interaction.IsActive = true;
-        }
-        else
-        {
-            foreach (var interaction in interactionHandlers)
-                interaction.IsActive = false;
-        }
     }
 
     private void OnDestroy()
     {
-        AppStateManager.Instance.StateChange -= OnAppStateChange;
-
         foreach (var interaction in interactionHandlers)
             interaction.OnClick.RemoveListener(OnPartClick);
+    }
+
+    public void SetActivity(bool isActive)
+    {
+        foreach (var interaction in interactionHandlers)
+            interaction.IsActive = isActive;
     }
 
     private void OnPartClick(GameObject go)
