@@ -908,14 +908,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421986796}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.2588191, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: -0.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 112936182}
   m_Father: {fileID: 8147340978543381558}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 30, z: 0}
 --- !u!1 &727222715
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,10 +2514,9 @@ MonoBehaviour:
   m_AvailableCars:
   - {fileID: 8061921246390331969, guid: bb87e3ed1621249e4ad6b74ff9599f7e, type: 3}
   - {fileID: 6652876134793673929, guid: d1be251991287432aa59ea8bbc0ec471, type: 3}
-  m_SpawnStage: {fileID: 421986796}
+  m_SpawnStand: {fileID: 1393728019}
   m_ChangeCarBtn: {fileID: 1899641462}
-  m_DefaultCar: {fileID: 8061921246390331969, guid: bb87e3ed1621249e4ad6b74ff9599f7e,
-    type: 3}
+  m_DefaultCar: {fileID: 0}
   m_ItemsPanel: {fileID: 973341974}
 --- !u!23 &919933667311814732
 MeshRenderer:

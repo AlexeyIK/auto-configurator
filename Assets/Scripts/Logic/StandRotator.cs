@@ -1,10 +1,13 @@
+using System;
 using UnityEngine;
 
 public class StandRotator : MonoBehaviour
 {
-    private DragHandler m_DragHandler;
-    private bool m_IsDragging;
-    private float m_RotateCountdown;
+    private DragHandler dragHandler;
+    private bool isDragging;
+    private float rotateCountdown;
+
+    private Car currentCar = null;
 
     [SerializeField] private Transform m_SpawnPoint = default;
     [SerializeField] private float m_RotateSpeed = -2f;
@@ -13,31 +16,54 @@ public class StandRotator : MonoBehaviour
 
     private void Awake()
     {
-        m_DragHandler = GetComponent<DragHandler>();
-        m_DragHandler.DragStart += () => m_IsDragging = true;
-        m_DragHandler.DragEnd += () =>
+        dragHandler = GetComponent<DragHandler>();
+        dragHandler.DragStart += () => isDragging = true;
+        dragHandler.DragEnd += () =>
         {
-            m_IsDragging = false;
-            m_RotateCountdown = m_RotatePause;
+            isDragging = false;
+            rotateCountdown = m_RotatePause;
         };
-        m_DragHandler.DragPerforming += (position, delta) =>
+        dragHandler.DragPerforming += (position, delta) =>
         {
             transform.Rotate(Vector3.up, -delta.x * m_DragRotateSensivity);
             m_SpawnPoint.Rotate(Vector3.up, -delta.x * m_DragRotateSensivity);
         };
+
+        ClearSpawnPoint();
     }
 
     private void Update()
     {
-        if (!m_IsDragging)
+        if (!isDragging && currentCar != null)
         {
-            if (m_RotateCountdown > 0)
-                m_RotateCountdown -= Time.deltaTime;
+            if (rotateCountdown > 0)
+                rotateCountdown -= Time.deltaTime;
             else
             {
                 transform.Rotate(new Vector3(0, 1, 0), m_RotateSpeed * Time.deltaTime);
                 m_SpawnPoint.Rotate(new Vector3(0, 1, 0), m_RotateSpeed * Time.deltaTime);
             }
         }
+    }
+
+    private void ClearSpawnPoint()
+    {
+        // сначала удаляем предыдущую модель авто с пьедестала
+        foreach (Transform child in m_SpawnPoint)
+        {
+            child.gameObject.SetActive(false);
+            GameObject.Destroy(child.gameObject);
+        }
+    }
+
+    public void SetACar(Car spawnCar)
+    {
+        if (spawnCar != null && currentCar != spawnCar)
+        {
+            ClearSpawnPoint();
+            GameObject.Instantiate(spawnCar, m_SpawnPoint.transform);
+        }
+
+        currentCar = spawnCar;
     }
 }

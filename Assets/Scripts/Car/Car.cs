@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(ColorChanger), typeof(CategorySelector))]
@@ -7,25 +6,25 @@ public class Car : MonoBehaviour
     private ColorChanger m_ColorChanger;
     private CategorySelector[] m_CategorySelectors;
 
-    [SerializeField] public string CarID;
-    [SerializeField] private Guid m_ID = Guid.NewGuid();
+    [SerializeField] private int m_CarID = 1;
     [SerializeField] private bool m_OverrideColor = false;
     [SerializeField] private Color m_Color = default;
 
+    public int CarId => m_CarID;
     public bool OverrideColor => m_OverrideColor;
 
     private void OnValidate()
     {
-        if (String.IsNullOrWhiteSpace(CarID))
-            CarID = m_ID.ToString();
+        var cars = Resources.FindObjectsOfTypeAll<Car>();
+        foreach (var car in cars)
+            if (car.CarId > m_CarID)
+                m_CarID = car.CarId + 1;
     }
 
     private void Awake()
     {
         m_CategorySelectors = GetComponents<CategorySelector>();
         m_ColorChanger = GetComponent<ColorChanger>();
-        if (m_ColorChanger == null)
-            Debug.LogError("You need a ColorChanger component on the car");
     }
 
     private void Start()

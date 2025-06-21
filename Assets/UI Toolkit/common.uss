@@ -71,6 +71,7 @@
     border-width: 2px;
     border-color: var(--color-normal-stroke);
     background-color: var(--color-primary-normal);
+    font-size: 16px;
 }
 
 .primary-button:hover {
@@ -92,6 +93,7 @@
     border-width: 2px;
     border-color: var(--color-normal-stroke);
     background-color: var(--color-secondary-normal);
+    font-size: 16px;
 }
 
 .secondary-button:hover {
@@ -233,6 +235,7 @@
     border-width: 0;
     width: 100%;
     -unity-text-align: left;
+    font-size: 16px;
 }
 
 .drop-down-item:hover {
