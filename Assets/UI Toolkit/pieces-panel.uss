@@ -3,6 +3,7 @@
     width: 100%;
     bottom: 0;
     left: 0;
+    padding-left: 16px;
 }
 
 #PiecesPanel Label {
@@ -15,7 +16,7 @@
     width: 100%;
     border-radius: 6px 6px 0 0;
     -unity-background-scale-mode: cover;
-    background-image: url("project://database/Assets/UI/Images/colors-blue.png?fileID=2800000&guid=d5190f1a8d3de4ef3965ec0e0cb0bc1d&type=3#colors-blue");
+    background-image: resource('Colors/colors-blue');
 }
 
 .pieces-item {
@@ -28,7 +29,7 @@
     border-radius: 8px;
     border-width: 2px;
     border-color: rgba(108, 107, 107, 0.4);
-    background-image: resource('Images/card_gradient');
+    background-image: resource('UI/card_gradient');
 }
 
 .pieces-item:hover {
@@ -38,7 +39,7 @@
 }
 
 .stack-panel--selected {
-    background-image: resource('Images/card_gradient-selected');
+    background-image: resource('UI/card_gradient-selected');
     border-color: #2394DC;
 }
 

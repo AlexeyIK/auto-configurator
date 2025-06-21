@@ -3,14 +3,16 @@ using UnityEngine.UIElements;
 
 public abstract class PanelControllerBase : MonoBehaviour
 {
+    protected UIDocument document;
     /// <summary>
     /// Controllable VisualElement
     /// </summary>
-    protected VisualElement _panel;
+    protected VisualElement panel;
 
     protected virtual void Awake()
     {
-        _panel = GetPanelVisualElement();
+        document = GetComponent<UIDocument>();
+        panel = GetPanelVisualElement();
     }
 
     /// <summary>
@@ -23,14 +25,19 @@ public abstract class PanelControllerBase : MonoBehaviour
     /// Background click reactions
     /// </summary>
     /// <param name="go"></param>
-    protected abstract void OnBackgroundClick(GameObject go);
+    protected virtual void OnBackgroundClick(GameObject go)
+    {
+        if (go == gameObject)
+            return;
+    }
 
     /// <summary>
     /// To hide any panel
     /// </summary>
     protected virtual void HidePanel()
     {
-        _panel.parent.style.display = DisplayStyle.None;
+        panel.SetEnabled(false);
+        panel.style.display = DisplayStyle.None;
     }
 
     /// <summary>
@@ -38,6 +45,7 @@ public abstract class PanelControllerBase : MonoBehaviour
     /// </summary>
     protected virtual void ShowPanel()
     {
-        _panel.parent.style.display = DisplayStyle.Flex;
+        panel.SetEnabled(true);
+        panel.style.display = DisplayStyle.Flex;
     }
 }

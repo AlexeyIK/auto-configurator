@@ -7,8 +7,7 @@ using UnityEngine.UIElements;
 [DisallowMultipleComponent]
 public class CategoriesPanelController : PanelControllerBase
 {
-    private UIDocument _UIDocument;
-    private ListView _cathegoriesList;
+    private ListView cathegoriesList;
 
     private CategoryItemData _selectedCathegory;
 
@@ -38,9 +37,8 @@ public class CategoriesPanelController : PanelControllerBase
         else
             GetData();
 
-        _cathegoriesList = _panel.Q<ListView>("CathegoryList");
-        _cathegoriesList.itemsSource = CathegoryItems;
-        _cathegoriesList.selectionChanged += OnCathegorySelection;
+        cathegoriesList.itemsSource = CathegoryItems;
+        cathegoriesList.selectionChanged += OnCathegorySelection;
 
         m_MissClickHandler.OnClick.AddListener(OnBackgroundClick);
 
@@ -51,16 +49,16 @@ public class CategoriesPanelController : PanelControllerBase
     {
         AppStateManager.Instance.StateChange -= OnStateChange;
         m_MissClickHandler.OnClick.RemoveListener(OnBackgroundClick);
-        _cathegoriesList.selectionChanged -= OnCathegorySelection;
+        cathegoriesList.selectionChanged -= OnCathegorySelection;
     }
 
     public void SelectByType(CategoryType cathegoryType)
     {
-        var list = _cathegoriesList.itemsSource as List<CategoryItemData>;
+        var list = cathegoriesList.itemsSource as List<CategoryItemData>;
         SelectedCathegory = list.FirstOrDefault(c => c.Type == cathegoryType);
         if (SelectedCathegory != null)
         {
-            _cathegoriesList.SetSelection(list.IndexOf(SelectedCathegory));
+            cathegoriesList.SetSelection(list.IndexOf(SelectedCathegory));
         }
     }
 
@@ -68,7 +66,7 @@ public class CategoriesPanelController : PanelControllerBase
     {
         if (enumerable.Count() == 0)
         {
-            var container = _cathegoriesList.Q<VisualElement>("unity-content-container");
+            var container = cathegoriesList.Q<VisualElement>("unity-content-container");
             var elem = container.ElementAt(CathegoryItems.IndexOf(SelectedCathegory));
             elem.Children().First().RemoveFromClassList("list-item-selected");
 
@@ -78,16 +76,16 @@ public class CategoriesPanelController : PanelControllerBase
 
         if (enumerable.FirstOrDefault() is CategoryItemData cathegoryItem)
         {
-            var container = _cathegoriesList.Q<VisualElement>("unity-content-container");
+            var container = cathegoriesList.Q<VisualElement>("unity-content-container");
 
             if (SelectedCathegory != null && CathegoryItems.Count > 0)
             {
-                var oldElem = container.ElementAt(_cathegoriesList.selectedIndex);
+                var oldElem = container.ElementAt(cathegoriesList.selectedIndex);
                 oldElem.RemoveFromClassList("list-item-selected");
             }
 
-            container = _cathegoriesList.Q<VisualElement>("unity-content-container");
-            var elem = container.ElementAt(_cathegoriesList.selectedIndex);
+            container = cathegoriesList.Q<VisualElement>("unity-content-container");
+            var elem = container.ElementAt(cathegoriesList.selectedIndex);
             elem.Children().First().AddToClassList("list-item-selected");
 
             SelectedCathegory = cathegoryItem;
@@ -104,13 +102,14 @@ public class CategoriesPanelController : PanelControllerBase
 
     protected override void OnBackgroundClick(GameObject go)
     {
-        _cathegoriesList.ClearSelection();
+        base.OnBackgroundClick(go);
+        cathegoriesList.ClearSelection();
     }
 
     protected override VisualElement GetPanelVisualElement()
     {
-        _UIDocument = GetComponent<UIDocument>();
-        return _UIDocument.rootVisualElement.Q("CathegoryList");
+        cathegoriesList = document.rootVisualElement.Q<ListView>("CathegoryList");
+        return cathegoriesList.parent;
     }
 
     private void OnStateChange(AppStateManager.AppState state)

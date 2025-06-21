@@ -1,0 +1,28 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="CreateProjectMenu" src="project://database/Assets/UI%20Toolkit/CreateProjectMenu.uxml?fileID=9197481963319205126&amp;guid=63ccd51e171bf4a08b7f6ae1b773c215&amp;type=3#CreateProjectMenu" />
+    <Style src="project://database/Assets/UI%20Toolkit/categories-panel.uss?fileID=7433441132597879392&amp;guid=5416644a9b3bc4e64af670d4f5b601fc&amp;type=3#categories-panel" />
+    <Style src="project://database/Assets/UI%20Toolkit/pieces-panel.uss?fileID=7433441132597879392&amp;guid=9b6fefa7127ed4961bd013fe80d5b05b&amp;type=3#pieces-panel" />
+    <Style src="project://database/Assets/UI%20Toolkit/common.uss?fileID=7433441132597879392&amp;guid=7d85f91042b3547958db9c63dde08734&amp;type=3#common" />
+    <ui:VisualElement name="CathegoryPanel" class="panel" style="width: 15%; align-self: flex-end; position: absolute; background-image: resource(&apos;UI/panel_gradient&apos;);">
+        <ui:Label name="CathegoriesTitle" text="Категории" class="panel-labels" />
+        <ui:ListView item-template="project://database/Assets/UI%20Toolkit/CathegoryItem.uxml?fileID=9197481963319205126&amp;guid=c9c2187979b3341e2b65ae363ce7d69c&amp;type=3#CathegoryItem" binding-source-selection-mode="AutoAssign" name="CathegoryList" virtualization-method="DynamicHeight" class="cathegory-list" />
+    </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1; flex-direction: column-reverse; align-content: auto; align-items: flex-start;">
+        <ui:VisualElement name="PiecesPanel" class="panel" style="align-content: flex-end;">
+            <ui:Label name="ItemsTitle" text="Позиции" class="panel-labels" />
+            <StackPanelView name="ItemsScrollView" items-element="project://database/Assets/UI%20Toolkit/PieceItem.uxml?fileID=9197481963319205126&amp;guid=472a877e6d6174d019ed11ed2edb4438&amp;type=3#PieceItem" gap="8" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" mode="Horizontal" class="pieces-list-view" />
+        </ui:VisualElement>
+        <ui:Button text="Приступить" name="StartProjectBtn" class="secondary-button" style="bottom: 16px; left: 16px;" />
+    </ui:VisualElement>
+    <ui:Instance template="CreateProjectMenu" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: none;" />
+    <ui:VisualElement name="DropDownMenu" class="drop-down-menu">
+        <ui:Button name="OpenMenuButton" class="menu-button" />
+        <ui:VisualElement name="DropDownPanel" class="drop-down-panel" style="align-items: flex-start;">
+            <ui:Button text="Открыть проект" name="OpenProject" class="drop-down-item" style="padding-top: 4px; padding-bottom: 4px;" />
+            <ui:VisualElement name="Line" class="drop-down-menu--line" />
+            <ui:Button text="Сохранить проект" name="SaveProject" class="drop-down-item" style="padding-top: 4px; padding-bottom: 4px;" />
+            <ui:VisualElement name="Line" class="drop-down-menu--line" />
+            <ui:Button text="Создать проект" name="NewProject" class="drop-down-item" style="padding-top: 4px; padding-bottom: 4px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

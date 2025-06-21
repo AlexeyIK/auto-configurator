@@ -9,10 +9,9 @@ using UnityEngine.UIElements;
 [DisallowMultipleComponent]
 public class ItemsPanelController : PanelControllerBase
 {
-    private List<PieceItemData> _items = new();
-    private UIDocument _UIDocument;
-    private Label _titleText;
-    private StackPanelView _itemsList;
+    private List<PieceItemData> items = new();
+    private Label titleText;
+    private StackPanelView itemsList;
 
     private CategoryType _selectedCategoryType;
 
@@ -26,11 +25,11 @@ public class ItemsPanelController : PanelControllerBase
 
     public List<PieceItemData> Items
     {
-        get { return _items; }
+        get { return items; }
         set
         {
-            _items = value;
-            _itemsList.ItemsSource = Items;
+            items = value;
+            itemsList.ItemsSource = Items;
         }
     }
 
@@ -45,8 +44,9 @@ public class ItemsPanelController : PanelControllerBase
 
         m_CathegoriesController = GetComponent<CategoriesPanelController>();
 
-        _itemsList = _UIDocument.rootVisualElement.Q<StackPanelView>("ItemsScrollView");
-        _itemsList.SelectedChange += OnItemSelectedChange;
+        titleText = document.rootVisualElement.Q<Label>("ItemsTitle");
+        itemsList = document.rootVisualElement.Q<StackPanelView>("ItemsScrollView");
+        itemsList.SelectedChange += OnItemSelectedChange;
 
         m_CathegoriesController.OnSelectedCathegoryChange += OnCathegoryChange;
         AppStateManager.Instance.StateChange += OnAppStateChange;
@@ -94,15 +94,15 @@ public class ItemsPanelController : PanelControllerBase
                 switch (selectedCategory.Type)
                 {
                     case CategoryType.Automobiles:
-                        _itemsList.itemsElement = CarItem;
+                        itemsList.itemsElement = CarItem;
                         break;
 
                     case CategoryType.Body:
-                        _itemsList.itemsElement = ColorItem;
+                        itemsList.itemsElement = ColorItem;
                         break;
 
                     default:
-                        _itemsList.itemsElement = PieceItem;
+                        itemsList.itemsElement = PieceItem;
                         break;
                 }
 
@@ -111,14 +111,14 @@ public class ItemsPanelController : PanelControllerBase
             else
                 GetCategoryData();
 
-            _titleText.text = selectedCategory.Caption;
+            titleText.text = selectedCategory.Caption;
         }
     }
 
     private void ShowAutomobileSelector()
     {
-        _titleText.text = "Автомобили";
-        _itemsList.itemsElement = CarItem;
+        titleText.text = "Автомобили";
+        itemsList.itemsElement = CarItem;
 
         if (m_UseMockData)
         {
@@ -162,7 +162,7 @@ public class ItemsPanelController : PanelControllerBase
     protected override void HidePanel()
     {
         base.HidePanel();
-        _UIDocument.rootVisualElement.Q<Label>("ItemsTitle").text = "";
+        document.rootVisualElement.Q<Label>("ItemsTitle").text = "";
     }
 
     protected override void ShowPanel()
@@ -172,14 +172,8 @@ public class ItemsPanelController : PanelControllerBase
 
     protected override VisualElement GetPanelVisualElement()
     {
-        _UIDocument = GetComponent<UIDocument>();
-        _titleText = _UIDocument.rootVisualElement.Q<Label>("ItemsTitle");
-        return _UIDocument.rootVisualElement.Q("ItemsScrollView");
-    }
-
-    protected override void OnBackgroundClick(GameObject go)
-    {
-        throw new NotImplementedException();
+        itemsList = document.rootVisualElement.Q<StackPanelView>("ItemsScrollView");
+        return itemsList.parent;
     }
 }
 
