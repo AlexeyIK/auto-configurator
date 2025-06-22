@@ -12,15 +12,15 @@ public class AppStateManager : MonoBehaviour
     }
 
     [SerializeField]
-    private AppState _appState = AppState.Initial;
+    private AppState m_AppState = AppState.Initial;
 
     public AppState State
     {
-        get { return _appState; }
+        get { return m_AppState; }
         set
         {
-            _appState = value;
-            StateChange?.Invoke(_appState);
+            m_AppState = value;
+            StateChange?.Invoke(m_AppState);
         }
     }
 
@@ -40,7 +40,7 @@ public class AppStateManager : MonoBehaviour
     private void Start()
     {
         if (TokenProvider.Instance.GetToken() != null)
-            State = AppState.Start;
+            State = m_AppState;
         else
             State = AppState.NetworkError;
     }

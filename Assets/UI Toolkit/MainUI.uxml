@@ -7,14 +7,14 @@
         <ui:Label name="CathegoriesTitle" text="Категории" class="panel-labels" />
         <ui:ListView item-template="project://database/Assets/UI%20Toolkit/CathegoryItem.uxml?fileID=9197481963319205126&amp;guid=c9c2187979b3341e2b65ae363ce7d69c&amp;type=3#CathegoryItem" binding-source-selection-mode="AutoAssign" name="CathegoryList" virtualization-method="DynamicHeight" class="cathegory-list" />
     </ui:VisualElement>
-    <ui:VisualElement style="flex-grow: 1; flex-direction: column-reverse; align-content: auto; align-items: flex-start;">
+    <ui:VisualElement picking-mode="Ignore" style="flex-grow: 1; flex-direction: column-reverse; align-content: auto; align-items: flex-start;">
         <ui:VisualElement name="PiecesPanel" class="panel" style="align-content: flex-end;">
             <ui:Label name="ItemsTitle" text="Позиции" class="panel-labels" />
             <StackPanelView name="ItemsScrollView" items-element="project://database/Assets/UI%20Toolkit/PieceItem.uxml?fileID=9197481963319205126&amp;guid=472a877e6d6174d019ed11ed2edb4438&amp;type=3#PieceItem" gap="8" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" mode="Horizontal" class="pieces-list-view" />
         </ui:VisualElement>
         <ui:Button text="Приступить" name="StartProjectBtn" class="secondary-button" style="bottom: 16px; left: 16px;" />
     </ui:VisualElement>
-    <ui:Instance template="CreateProjectMenu" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: none;" />
+    <ui:Instance template="CreateProjectMenu" enabled="true" picking-mode="Ignore" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex;" />
     <ui:VisualElement name="DropDownMenu" class="drop-down-menu">
         <ui:Button name="OpenMenuButton" class="menu-button" />
         <ui:VisualElement name="DropDownPanel" class="drop-down-panel" style="align-items: flex-start;">

@@ -13,7 +13,7 @@ public class ItemsPanelController : PanelControllerBase
     private Label titleText;
     private StackPanelView itemsList;
 
-    private CategoryType _selectedCategoryType;
+    private CategoryType selectedCategoryType;
 
     [SerializeField] private bool m_UseMockData = false;
     [SerializeField] private ItemsMock m_MockData = default;
@@ -68,7 +68,7 @@ public class ItemsPanelController : PanelControllerBase
                 break;
 
             case AppStateManager.AppState.Start:
-                _selectedCategoryType = CategoryType.Automobiles;
+                selectedCategoryType = CategoryType.Automobiles;
                 ShowAutomobileSelector();
                 break;
 
@@ -87,30 +87,29 @@ public class ItemsPanelController : PanelControllerBase
         }
         else
         {
-            _selectedCategoryType = selectedCategory.Type;
+            selectedCategoryType = selectedCategory.Type;
+
+            switch (selectedCategory.Type)
+            {
+                case CategoryType.Automobiles:
+                    itemsList.itemsElement = CarItem;
+                    break;
+
+                case CategoryType.Colors:
+                    itemsList.itemsElement = ColorItem;
+                    break;
+
+                default:
+                    itemsList.itemsElement = PieceItem;
+                    break;
+            }
 
             if (m_UseMockData)
-            {
-                switch (selectedCategory.Type)
-                {
-                    case CategoryType.Automobiles:
-                        itemsList.itemsElement = CarItem;
-                        break;
-
-                    case CategoryType.Body:
-                        itemsList.itemsElement = ColorItem;
-                        break;
-
-                    default:
-                        itemsList.itemsElement = PieceItem;
-                        break;
-                }
-
                 Items = m_MockData.Items.FirstOrDefault(c => c.CathegoryType == selectedCategory.Type).Items;
-            }
             else
                 GetCategoryData();
 
+            ShowPanel();
             titleText.text = selectedCategory.Caption;
         }
     }
@@ -135,17 +134,30 @@ public class ItemsPanelController : PanelControllerBase
     {
         if (element == null)
         {
-            SelectedItemChange?.Invoke(null, _selectedCategoryType);
+            SelectedItemChange?.Invoke(null, selectedCategoryType);
             return;
         }
 
         if (element.dataSource is PieceItemData pieceItemData)
-            SelectedItemChange?.Invoke(pieceItemData, _selectedCategoryType);
+            SelectedItemChange?.Invoke(pieceItemData, selectedCategoryType);
     }
 
-    private void GetCategoryData()
+    private async void GetCategoryData()
     {
-        throw new NotImplementedException();
+        Debug.Log("Requesting items for category: " + selectedCategoryType.ToString());
+        if (selectedCategoryType == CategoryType.Colors)
+        {
+            var colors = await NetworkManager.GetAsync<List<Data.Model.Color>>("colors", TokenProvider.Instance.GetToken());
+            var items = new List<PieceItemData>();
+            foreach (var color in colors)
+                items.Add(new PieceItemData(color.Id, CategoryType.Colors, color.Name, null, color.Image));
+
+            Items = items;
+        }
+        else
+        {
+
+        }
     }
 
     private async void GetAutomobilesAsync()

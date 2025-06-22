@@ -3,7 +3,7 @@ using UnityEngine;
 public enum CategoryType
 {
     Automobiles = 99,
-    Body = 0,
+    Colors = 0,
     Wheels = 1,
     Tyres = 2,
     Spoilers = 3,
@@ -16,7 +16,7 @@ public class CategorySelector : MonoBehaviour
     private CategoriesPanelController cathegoriesController;
 
     [SerializeField] private InteractionHandler[] interactionHandlers = default;
-    [SerializeField] private CategoryType category = CategoryType.Body;
+    [SerializeField] private CategoryType category = CategoryType.Colors;
 
     private void Awake()
     {

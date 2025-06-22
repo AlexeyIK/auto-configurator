@@ -35,6 +35,7 @@ public class NewProjectPopup : PanelControllerBase
     {
         // make request
         AppStateManager.Instance.State = AppStateManager.AppState.ProjectModification;
+        startProjectButton.style.display = DisplayStyle.None;
         HidePanel();
     }
 

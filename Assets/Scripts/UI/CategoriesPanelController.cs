@@ -1,28 +1,40 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Data.Model;
+using Data.ViewModel;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 [DisallowMultipleComponent]
 public class CategoriesPanelController : PanelControllerBase
 {
-    private ListView cathegoriesList;
+    private ListView categoriesList;
+    private List<CategoryItemData> categoryItems = new();
 
-    private CategoryItemData _selectedCathegory;
+    private CategoryItemData selectedCathegory;
 
     [SerializeField] private bool m_UseMockData = false;
     [SerializeField] private CategoriesMock m_MockData = default;
     [SerializeField] private InteractionHandler m_MissClickHandler = default;
 
-    public List<CategoryItemData> CathegoryItems = new();
-    public CategoryItemData SelectedCathegory
+    public List<CategoryItemData> CategoryItems
     {
-        get { return _selectedCathegory; }
+        get { return categoryItems; }
         set
         {
-            _selectedCathegory = value;
-            OnSelectedCathegoryChange?.Invoke(_selectedCathegory);
+            categoryItems = value;
+            categoriesList.itemsSource = categoryItems;
+        }
+    }
+
+    public CategoryItemData SelectedCathegory
+    {
+        get { return selectedCathegory; }
+        set
+        {
+            selectedCathegory = value;
+            OnSelectedCathegoryChange?.Invoke(selectedCathegory);
         }
     }
 
@@ -32,33 +44,29 @@ public class CategoriesPanelController : PanelControllerBase
     {
         base.Awake();
 
-        if (m_UseMockData)
-            CathegoryItems = m_MockData.CathegoryItems;
-        else
-            GetData();
-
-        cathegoriesList.itemsSource = CathegoryItems;
-        cathegoriesList.selectionChanged += OnCathegorySelection;
-
+        AppStateManager.Instance.StateChange += OnStateChange;
+        categoriesList.selectionChanged += OnCathegorySelection;
         m_MissClickHandler.OnClick.AddListener(OnBackgroundClick);
 
-        AppStateManager.Instance.StateChange += OnStateChange;
+
+        if (m_UseMockData)
+            CategoryItems = m_MockData.CathegoryItems;
     }
 
     private void OnDestroy()
     {
-        AppStateManager.Instance.StateChange -= OnStateChange;
         m_MissClickHandler.OnClick.RemoveListener(OnBackgroundClick);
-        cathegoriesList.selectionChanged -= OnCathegorySelection;
+        categoriesList.selectionChanged -= OnCathegorySelection;
+        AppStateManager.Instance.StateChange -= OnStateChange;
     }
 
     public void SelectByType(CategoryType cathegoryType)
     {
-        var list = cathegoriesList.itemsSource as List<CategoryItemData>;
+        var list = categoriesList.itemsSource as List<CategoryItemData>;
         SelectedCathegory = list.FirstOrDefault(c => c.Type == cathegoryType);
         if (SelectedCathegory != null)
         {
-            cathegoriesList.SetSelection(list.IndexOf(SelectedCathegory));
+            categoriesList.SetSelection(list.IndexOf(SelectedCathegory));
         }
     }
 
@@ -66,8 +74,8 @@ public class CategoriesPanelController : PanelControllerBase
     {
         if (enumerable.Count() == 0)
         {
-            var container = cathegoriesList.Q<VisualElement>("unity-content-container");
-            var elem = container.ElementAt(CathegoryItems.IndexOf(SelectedCathegory));
+            var container = categoriesList.Q<VisualElement>("unity-content-container");
+            var elem = container.ElementAt(CategoryItems.IndexOf(SelectedCathegory));
             elem.Children().First().RemoveFromClassList("list-item-selected");
 
             SelectedCathegory = null;
@@ -76,16 +84,16 @@ public class CategoriesPanelController : PanelControllerBase
 
         if (enumerable.FirstOrDefault() is CategoryItemData cathegoryItem)
         {
-            var container = cathegoriesList.Q<VisualElement>("unity-content-container");
+            var container = categoriesList.Q<VisualElement>("unity-content-container");
 
-            if (SelectedCathegory != null && CathegoryItems.Count > 0)
+            if (SelectedCathegory != null && CategoryItems.Count > 0)
             {
-                var oldElem = container.ElementAt(cathegoriesList.selectedIndex);
+                var oldElem = container.ElementAt(categoriesList.selectedIndex);
                 oldElem.RemoveFromClassList("list-item-selected");
             }
 
-            container = cathegoriesList.Q<VisualElement>("unity-content-container");
-            var elem = container.ElementAt(cathegoriesList.selectedIndex);
+            container = categoriesList.Q<VisualElement>("unity-content-container");
+            var elem = container.ElementAt(categoriesList.selectedIndex);
             elem.Children().First().AddToClassList("list-item-selected");
 
             SelectedCathegory = cathegoryItem;
@@ -95,21 +103,27 @@ public class CategoriesPanelController : PanelControllerBase
             Debug.Log($"Selected item id: {item.Id}");
     }
 
-    private void GetData()
+    private async void GetData()
     {
-        throw new NotImplementedException();
+        var categories = await NetworkManager.GetAsync<List<Category>>("categories", TokenProvider.Instance.GetToken());
+
+        var items = new List<CategoryItemData>();
+        foreach (var category in categories)
+            items.Add(new CategoryItemData(category.Id, category.Type, category.Name, category.Image));
+
+        CategoryItems = items;
     }
 
     protected override void OnBackgroundClick(GameObject go)
     {
         base.OnBackgroundClick(go);
-        cathegoriesList.ClearSelection();
+        categoriesList.ClearSelection();
     }
 
     protected override VisualElement GetPanelVisualElement()
     {
-        cathegoriesList = document.rootVisualElement.Q<ListView>("CathegoryList");
-        return cathegoriesList.parent;
+        categoriesList = document.rootVisualElement.Q<ListView>("CathegoryList");
+        return categoriesList.parent;
     }
 
     private void OnStateChange(AppStateManager.AppState state)
@@ -126,6 +140,7 @@ public class CategoriesPanelController : PanelControllerBase
                 break;
 
             case AppStateManager.AppState.ProjectModification:
+                GetData();
                 ShowPanel();
                 break;
         }

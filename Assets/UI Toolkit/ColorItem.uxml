@@ -1,16 +1,15 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/items-menu.uss?fileID=7433441132597879392&amp;guid=5416644a9b3bc4e64af670d4f5b601fc&amp;type=3#items-menu" />
-    <Style src="project://database/Assets/UI/pieces-panel.uss?fileID=7433441132597879392&amp;guid=9b6fefa7127ed4961bd013fe80d5b05b&amp;type=3#pieces-panel" />
+    <Style src="project://database/Assets/UI%20Toolkit/categories-panel.uss?fileID=7433441132597879392&amp;guid=5416644a9b3bc4e64af670d4f5b601fc&amp;type=3#categories-panel" />
+    <Style src="project://database/Assets/UI%20Toolkit/pieces-panel.uss?fileID=7433441132597879392&amp;guid=9b6fefa7127ed4961bd013fe80d5b05b&amp;type=3#pieces-panel" />
     <ui:VisualElement name="ColorItem" class="pieces-item">
-        <ui:VisualElement name="Image" class="parts-item-image color-item-image" />
-        <ui:Label name="Manufacturer" text="Manufacturer" class="parts-item-caption pieces-item-caption" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px;">
+        <ui:VisualElement name="Image" class="parts-item-image color-item-image" style="background-image: resource(&apos;Colors/color-light-blue&apos;);">
+            <Bindings>
+                <ui:DataBinding property="style.backgroundImage" data-source-path="m_Image" binding-mode="ToTarget" />
+            </Bindings>
+        </ui:VisualElement>
+        <ui:Label name="Manufacturer" text="Manufacturer" class="parts-item-caption pieces-item-caption" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 6px; padding-right: 6px; padding-bottom: 6px; padding-left: 6px; -unity-text-align: middle-center;">
             <Bindings>
                 <ui:DataBinding property="text" data-source-path="m_Manufacturer" binding-mode="ToTarget" />
-            </Bindings>
-        </ui:Label>
-        <ui:Label name="ProductName" text="Product Name" class="parts-item-descr pieces-item-descr" style="padding-top: 2px; padding-right: 2px; padding-bottom: 2px; padding-left: 2px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;">
-            <Bindings>
-                <ui:DataBinding property="text" data-source-path="m_ModelName" binding-mode="ToTarget" />
             </Bindings>
         </ui:Label>
     </ui:VisualElement>

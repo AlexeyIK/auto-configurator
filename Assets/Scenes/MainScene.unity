@@ -1251,7 +1251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cae637193fe074b8b8ff56f4911f1287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _appState: 0
+  m_AppState: 1
 --- !u!4 &905986117
 Transform:
   m_ObjectHideFlags: 0
@@ -1335,10 +1335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4d2227a720a47519968d7e52dd5aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UseMockData: 1
+  m_UseMockData: 0
   m_MockData: {fileID: 11400000, guid: 996f45deed3c14a6e8e25a9e32b4a646, type: 2}
   m_MissClickHandler: {fileID: 4729158939804277430}
-  CathegoryItems: []
 --- !u!114 &973341974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1351,7 +1350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2901a8c64dcb046348b6bbfd19d85219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UseMockData: 1
+  m_UseMockData: 0
   m_MockData: {fileID: 11400000, guid: 53ec2cb5ac3274d298bae98371799a02, type: 2}
   m_CathegoriesController: {fileID: 973341973}
   CarItem: {fileID: 9197481963319205126, guid: 64d2e7a19b00b4d20bf1f6d59106c938, type: 3}
@@ -1649,7 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2d1f8d4d97e4f5ca37db22d1b66478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AuthToken: MWFkbWluNi8xOS8yMDI1IDQ6MDc6MjY_UE0
+  m_AuthToken: MWFkbWluNi8yMS8yMDI1IDExOjQwOjEwIFBN
 --- !u!1 &1393728014
 GameObject:
   m_ObjectHideFlags: 0
