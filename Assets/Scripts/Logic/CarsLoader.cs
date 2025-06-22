@@ -8,60 +8,89 @@ using UnityEngine.UI;
 public class CarsLoader : MonoBehaviour
 {
     [SerializeField] private List<Car> m_AvailableCars = default;
-    [SerializeField] private StandRotator m_SpawnStand = default;
-    [SerializeField] private Button m_ChangeCarBtn = default;
     [SerializeField] private Car m_DefaultCar = default;
-    [SerializeField] private ItemsPanelController m_ItemsPanel = default;
+    [Header("Spawn options")]
+    [SerializeField] private StandRotator m_RotatingStand = default;
+    [SerializeField] private Transform m_SpawnPoint = default;
 
     private void Awake()
     {
-        if (m_DefaultCar != null)
-            SpawnACar(m_DefaultCar);
-
-        m_ItemsPanel.SelectedItemChange += OnSelectedItemChange;
+        SpawnACar(m_DefaultCar);
     }
 
-    private void OnDestroy()
+    /// <summary>
+    /// Загрузка автомобиля из данных
+    /// </summary>
+    /// <param name="carData"></param>
+    /// <returns></returns>
+    public async Task<Car> LoadCar(PieceItemData carData)
     {
-        m_ItemsPanel.SelectedItemChange -= OnSelectedItemChange;
+        var automobileData = await NetworkManager.GetAsync<Automobile>($"Automobiles/{carData.Id}", TokenProvider.Instance.GetToken());
+        if (automobileData == null)
+        {
+            Debug.LogError($"Couldn't load requested Car with id={carData.Id} from server");
+            return null;
+        }
+
+        return await SpawnACar(automobileData);
     }
 
     /// <summary>
     /// Создание автомобиля по ссылке
     /// </summary>
     /// <param name="carPath"></param>
-    public async void SpawnACar(string carPath)
+    private async Task<Car> SpawnACar(Automobile automobileData)
     {
-        // очищаем от расширения
-        if (carPath.EndsWith(".asset"))
-            carPath = carPath[..carPath.LastIndexOf('.')];
+        var modelPath = automobileData.ModelUrl;
 
-        var request = Resources.LoadAsync<Car>(carPath);
+        // очищаем от расширения
+        if (modelPath.EndsWith(".asset"))
+            modelPath = modelPath[..modelPath.LastIndexOf('.')];
+
+        var request = Resources.LoadAsync<Car>(modelPath);
         while (!request.isDone)
             await Task.Yield();
 
-        var spawnCar = request.asset as Car;
-        if (spawnCar == null)
+        var spawnCarPrefab = request.asset as Car;
+        if (spawnCarPrefab == null)
         {
-            Debug.LogError($"Не могу загрузить автомобиль по ссылке: {carPath}");
-            return;
+            Debug.LogError($"Couldn't load the Car model from resources: {modelPath}");
+            return null;
         }
 
-        m_SpawnStand.SetACar(spawnCar);
+        return InstantiateCar(spawnCarPrefab, automobileData);
     }
 
-    public void SpawnACar(Car prefab)
+    /// <summary>
+    /// Создание автомобиля из префаба
+    /// </summary>
+    /// <param name="prefab"></param>
+    private void SpawnACar(Car prefab)
     {
-        m_SpawnStand.SetACar(prefab);
+        if (m_DefaultCar == null)
+            ClearSpawnPoint();
+        else
+            InstantiateCar(prefab, null);
     }
 
-    private async void OnSelectedItemChange(PieceItemData data, CategoryType type)
+    private Car InstantiateCar(Car prefab, Automobile data)
     {
-        if (type != CategoryType.Automobiles)
-            return;
+        ClearSpawnPoint();
+        m_RotatingStand.IsRotating = true;
+        var car = GameObject.Instantiate(prefab, m_SpawnPoint);
+        car.SetDataContext(data);
+        return car;
+    }
 
-        var automobileData = await NetworkManager.GetAsync<Automobile>($"Automobiles/{data.Id}", TokenProvider.Instance.GetToken());
+    private void ClearSpawnPoint()
+    {
+        m_RotatingStand.IsRotating = false;
 
-        SpawnACar(automobileData.ModelUrl);
+        // сначала удаляем предыдущую модель авто с пьедестала
+        foreach (Transform child in m_SpawnPoint)
+        {
+            child.gameObject.SetActive(false);
+            GameObject.Destroy(child.gameObject);
+        }
     }
 }

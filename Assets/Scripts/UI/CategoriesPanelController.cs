@@ -34,18 +34,18 @@ public class CategoriesPanelController : PanelControllerBase
         set
         {
             selectedCathegory = value;
-            OnSelectedCathegoryChange?.Invoke(selectedCathegory);
+            SelectedCathegoryChange?.Invoke(selectedCathegory);
         }
     }
 
-    public event Action<CategoryItemData> OnSelectedCathegoryChange;
+    public event Action<CategoryItemData> SelectedCathegoryChange;
 
     protected override void Awake()
     {
         base.Awake();
 
         AppStateManager.Instance.StateChange += OnStateChange;
-        categoriesList.selectionChanged += OnCathegorySelection;
+        categoriesList.selectionChanged += OnCategorySelection;
         m_MissClickHandler.OnClick.AddListener(OnBackgroundClick);
 
 
@@ -56,7 +56,7 @@ public class CategoriesPanelController : PanelControllerBase
     private void OnDestroy()
     {
         m_MissClickHandler.OnClick.RemoveListener(OnBackgroundClick);
-        categoriesList.selectionChanged -= OnCathegorySelection;
+        categoriesList.selectionChanged -= OnCategorySelection;
         AppStateManager.Instance.StateChange -= OnStateChange;
     }
 
@@ -70,7 +70,7 @@ public class CategoriesPanelController : PanelControllerBase
         }
     }
 
-    private void OnCathegorySelection(IEnumerable<object> enumerable)
+    private void OnCategorySelection(IEnumerable<object> enumerable)
     {
         if (enumerable.Count() == 0)
         {

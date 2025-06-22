@@ -13,7 +13,7 @@ public class ItemsPanelController : PanelControllerBase
     private Label titleText;
     private StackPanelView itemsList;
 
-    private CategoryType selectedCategoryType;
+    private CategoryItemData selectedCategory;
 
     [SerializeField] private bool m_UseMockData = false;
     [SerializeField] private ItemsMock m_MockData = default;
@@ -48,14 +48,14 @@ public class ItemsPanelController : PanelControllerBase
         itemsList = document.rootVisualElement.Q<StackPanelView>("ItemsScrollView");
         itemsList.SelectedChange += OnItemSelectedChange;
 
-        m_CathegoriesController.OnSelectedCathegoryChange += OnCathegoryChange;
+        m_CathegoriesController.SelectedCathegoryChange += OnCathegoryChange;
         AppStateManager.Instance.StateChange += OnAppStateChange;
     }
 
     private void OnDestroy()
     {
         AppStateManager.Instance.StateChange -= OnAppStateChange;
-        m_CathegoriesController.OnSelectedCathegoryChange -= OnCathegoryChange;
+        m_CathegoriesController.SelectedCathegoryChange -= OnCathegoryChange;
     }
 
     private void OnAppStateChange(AppStateManager.AppState state)
@@ -68,7 +68,7 @@ public class ItemsPanelController : PanelControllerBase
                 break;
 
             case AppStateManager.AppState.Start:
-                selectedCategoryType = CategoryType.Automobiles;
+                selectedCategory = new CategoryItemData(0, CategoryType.Automobiles, "Автомобили", null);
                 ShowAutomobileSelector();
                 break;
 
@@ -79,15 +79,15 @@ public class ItemsPanelController : PanelControllerBase
         }
     }
 
-    private void OnCathegoryChange(CategoryItemData selectedCategory)
+    private void OnCathegoryChange(CategoryItemData _selectedCategory)
     {
-        if (selectedCategory == null)
+        if (_selectedCategory == null)
         {
             HidePanel();
         }
         else
         {
-            selectedCategoryType = selectedCategory.Type;
+            selectedCategory = _selectedCategory;
 
             switch (selectedCategory.Type)
             {
@@ -116,12 +116,12 @@ public class ItemsPanelController : PanelControllerBase
 
     private void ShowAutomobileSelector()
     {
-        titleText.text = "Автомобили";
+        titleText.text = selectedCategory.Caption;
         itemsList.itemsElement = CarItem;
 
         if (m_UseMockData)
         {
-            Items = m_MockData.Items.FirstOrDefault(c => c.CathegoryType == CategoryType.Automobiles).Items;
+            Items = m_MockData.Items.FirstOrDefault(c => c.CathegoryType == selectedCategory.Type).Items;
             Items.ForEach(i => i.TryLoadImage(i.ImageUrl));
         }
         else
@@ -134,29 +134,34 @@ public class ItemsPanelController : PanelControllerBase
     {
         if (element == null)
         {
-            SelectedItemChange?.Invoke(null, selectedCategoryType);
+            SelectedItemChange?.Invoke(null, selectedCategory.Type);
             return;
         }
 
         if (element.dataSource is PieceItemData pieceItemData)
-            SelectedItemChange?.Invoke(pieceItemData, selectedCategoryType);
+            SelectedItemChange?.Invoke(pieceItemData, selectedCategory.Type);
     }
 
     private async void GetCategoryData()
     {
-        Debug.Log("Requesting items for category: " + selectedCategoryType.ToString());
-        if (selectedCategoryType == CategoryType.Colors)
+        Debug.Log("Requesting items for category: " + selectedCategory.Type.ToString());
+        if (selectedCategory.Type == CategoryType.Colors)
         {
             var colors = await NetworkManager.GetAsync<List<Data.Model.Color>>("colors", TokenProvider.Instance.GetToken());
             var items = new List<PieceItemData>();
             foreach (var color in colors)
-                items.Add(new PieceItemData(color.Id, CategoryType.Colors, color.Name, null, color.Image));
+                items.Add(new PieceItemData(color.Id, CategoryType.Colors, color.Name, color.HexCode, color.Image));
 
             Items = items;
         }
         else
         {
+            var pieces = await NetworkManager.GetAsync<List<Piece>>($"pieces?categoryId={selectedCategory.Id}&automobileId={ProjectManager.Instance.CurrentCar.CarId}", TokenProvider.Instance.GetToken());
+            var items = new List<PieceItemData>();
+            foreach (var piece in pieces)
+                items.Add(new PieceItemData(piece.Id, selectedCategory.Type, piece.Name, piece.Manufacturer.Name, piece.Image));
 
+            Items = items;
         }
     }
 

@@ -1,3 +1,4 @@
+using Data.Model;
 using UnityEngine;
 
 [RequireComponent(typeof(ColorChanger), typeof(CategorySelector))]
@@ -5,11 +6,13 @@ public class Car : MonoBehaviour
 {
     private ColorChanger m_ColorChanger;
     private CategorySelector[] m_CategorySelectors;
+    private Automobile data;
 
     [SerializeField] private int m_CarID = 1;
     [SerializeField] private bool m_OverrideColor = false;
-    [SerializeField] private Color m_Color = default;
+    [SerializeField] private UnityEngine.Color m_Color = default;
 
+    public Automobile Data => data;
     public int CarId => m_CarID;
     public bool OverrideColor => m_OverrideColor;
 
@@ -36,6 +39,17 @@ public class Car : MonoBehaviour
     private void OnDestroy()
     {
         AppStateManager.Instance.StateChange -= OnStateChange;
+    }
+
+    public void SetDataContext(Automobile dataContext)
+    {
+        data = dataContext;
+    }
+
+    public void ChangeColorTo(UnityEngine.Color color)
+    {
+        m_ColorChanger.ChangeColor(color);
+        m_Color = color;
     }
 
     private void OnStateChange(AppStateManager.AppState state)

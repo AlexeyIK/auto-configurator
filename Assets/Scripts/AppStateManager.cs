@@ -24,7 +24,6 @@ public class AppStateManager : MonoBehaviour
         }
     }
 
-
     public static AppStateManager Instance { get; set; }
 
     public event Action<AppState> StateChange;
