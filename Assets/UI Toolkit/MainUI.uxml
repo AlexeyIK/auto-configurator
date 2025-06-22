@@ -3,7 +3,7 @@
     <Style src="project://database/Assets/UI%20Toolkit/categories-panel.uss?fileID=7433441132597879392&amp;guid=5416644a9b3bc4e64af670d4f5b601fc&amp;type=3#categories-panel" />
     <Style src="project://database/Assets/UI%20Toolkit/pieces-panel.uss?fileID=7433441132597879392&amp;guid=9b6fefa7127ed4961bd013fe80d5b05b&amp;type=3#pieces-panel" />
     <Style src="project://database/Assets/UI%20Toolkit/common.uss?fileID=7433441132597879392&amp;guid=7d85f91042b3547958db9c63dde08734&amp;type=3#common" />
-    <ui:VisualElement name="CathegoryPanel" class="panel" style="width: 15%; align-self: flex-end; position: absolute; background-image: resource(&apos;UI/panel_gradient&apos;);">
+    <ui:VisualElement name="CathegoryPanel" class="panel" style="position: absolute; background-image: resource(&apos;UI/panel_gradient&apos;);">
         <ui:Label name="CathegoriesTitle" text="Категории" class="panel-labels" />
         <ui:ListView item-template="project://database/Assets/UI%20Toolkit/CathegoryItem.uxml?fileID=9197481963319205126&amp;guid=c9c2187979b3341e2b65ae363ce7d69c&amp;type=3#CathegoryItem" binding-source-selection-mode="AutoAssign" name="CathegoryList" virtualization-method="DynamicHeight" class="cathegory-list" />
     </ui:VisualElement>

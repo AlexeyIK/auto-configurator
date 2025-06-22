@@ -8,7 +8,7 @@
             <ui:VisualElement name="Content" class="popup-content">
                 <ui:VisualElement name="Form" class="popup-form">
                     <ui:Label text="Название:" />
-                    <ui:TextField placeholder-text="Введите название проекта" hide-placeholder-on-focus="true" max-length="64" />
+                    <ui:TextField placeholder-text="Введите название проекта" hide-placeholder-on-focus="true" max-length="64" name="ProjectName" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Buttons" class="popup-buttons">
                     <ui:Button text="Отмена" name="CancelBtn" class="secondary-button" style="margin-right: 32px;" />

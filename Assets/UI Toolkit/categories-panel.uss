@@ -1,5 +1,5 @@
 #CathegoryPanel {
-    width: 300px;
+    width: 290px;
     height: 100%;
     top: 0;
     right: 0;
