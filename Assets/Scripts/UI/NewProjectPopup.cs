@@ -49,10 +49,13 @@ public class NewProjectPopup : PanelControllerBase
     private async void OnSubmitBtnClick()
     {
         // ToDo: make creation request
-        //var newProject = new Project() { Name = textField.value.Trim(), Commentary = "", ColorId =  }
-        //var project = await NetworkManager.PostAsync("projects", )
-        var project = new Project() { Id = 1, ColorId = 0, Status = ProjectStatus.Draft };
-        ProjectManager.Instance.SetProject(project);
+        //var project = new Project() { Id = 1, ColorId = 0, Status = ProjectStatus.Draft };
+        var hasCreated = await ProjectManager.Instance.CreateProject(textField.value);
+        if (!hasCreated)
+        {
+            AppStateManager.Instance.State = AppStateManager.AppState.NetworkError;
+            return;
+        }
 
         AppStateManager.Instance.State = AppStateManager.AppState.ProjectModification;
         startProjectButton.style.display = DisplayStyle.None;

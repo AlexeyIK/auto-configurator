@@ -14,9 +14,6 @@ namespace Data.Model
     public class Project
     {
         public int Id { get; set; }
-        public int AutomobileId { get; set; }
-        public int AuthorId { get; set; }
-        public int ColorId { get; set; }
         public ProjectStatus Status { get; set; }
         public string Name { get; set; }
         public string Commentary { get; set; }
@@ -26,6 +23,16 @@ namespace Data.Model
 
         public Automobile Automobile { get; set; }
         public Color Color { get; set; }
+
+        public List<Modification> Modifications { get; set; }
+    }
+
+    public class ProjectDto
+    {
+        public int AutomobileId { get; set; }
+        public int ColorId { get; set; }
+        public string Name { get; set; }
+        public string Commentary { get; set; }
 
         public List<Modification> Modifications { get; set; }
     }

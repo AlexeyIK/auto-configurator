@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Data.Model;
 using Data.ViewModel;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class ProjectManager : MonoBehaviour
@@ -77,9 +79,33 @@ public class ProjectManager : MonoBehaviour
         }
     }
 
-    public void SetProject(Project project)
+    public async Task<bool> CreateProject(string projectName, string projectComment = "")
     {
+        var payload = new ProjectDto
+        {
+            Name = projectName,
+            Commentary = projectComment,
+            AutomobileId = CurrentCar.CarId,
+            ColorId = CurrentCar.ColorId,
+            Modifications = new()
+        };
+
+        Debug.Log("New project:\n" + JsonConvert.SerializeObject(payload));
+
+        var project = await NetworkManager.PostAsync<ProjectDto, Project>("projects", payload, TokenProvider.Instance.GetToken());
+        if (project == null)
+            return false;
+
+        Debug.Log("Project created:\n" + JsonConvert.SerializeObject(project));
+
         projectData = project;
         projectData.Automobile = currentCar.Data;
+
+        return true;
+    }
+
+    public void LoadProject(int projectId)
+    {
+
     }
 }
