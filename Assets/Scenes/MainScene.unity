@@ -576,7 +576,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.051576726, y: -0.91076, z: 0.11990379, w: 0.39176425}
-  m_LocalPosition: {x: 3.25, y: 0.9, z: 3.15}
+  m_LocalPosition: {x: 3.2, y: 0.7, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1040,8 +1040,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ItemsPanel: {fileID: 973341974}
   m_CarsLoader: {fileID: 917435382934139214}
+  m_AttachMaster: {fileID: 0}
   Name: Project name
   m_CurrentCar: {fileID: 0}
+  m_Modifications: []
 --- !u!1 &973341970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,7 +1129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UseMockData: 0
   m_MockData: {fileID: 11400000, guid: 53ec2cb5ac3274d298bae98371799a02, type: 2}
-  m_CathegoriesController: {fileID: 973341973}
+  m_CategoriesController: {fileID: 973341973}
   CarItem: {fileID: 9197481963319205126, guid: 64d2e7a19b00b4d20bf1f6d59106c938, type: 3}
   ColorItem: {fileID: 9197481963319205126, guid: e5941891fd474481e818787042345525,
     type: 3}
@@ -1934,7 +1936,7 @@ MonoBehaviour:
   m_text: "\u0413\u0410\u0420\u0410\u0416 3D"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1964,7 +1966,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -2028,7 +2030,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
+  - {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

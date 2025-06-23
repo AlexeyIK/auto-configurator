@@ -1,4 +1,6 @@
 using System;
+using Data.Model;
+using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class NewProjectPopup : PanelControllerBase
@@ -48,7 +50,8 @@ public class NewProjectPopup : PanelControllerBase
     private void OnSubmitBtnClick()
     {
         // ToDo: make creation request
-
+        var project = new Project() { Id = 1, ColorId = 0, CreatedAt = DateTime.UtcNow, Status = ProjectStatus.Draft };
+        ProjectManager.Instance.SetProject(project);
 
         AppStateManager.Instance.State = AppStateManager.AppState.ProjectModification;
         startProjectButton.style.display = DisplayStyle.None;

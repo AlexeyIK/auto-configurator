@@ -1,9 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Data.Model;
 using Data.ViewModel;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CarsLoader : MonoBehaviour
 {
@@ -12,6 +12,8 @@ public class CarsLoader : MonoBehaviour
     [Header("Spawn options")]
     [SerializeField] private StandRotator m_RotatingStand = default;
     [SerializeField] private Transform m_SpawnPoint = default;
+
+    public event Action<Car> CarLoaded;
 
     private void Awake()
     {
@@ -79,6 +81,8 @@ public class CarsLoader : MonoBehaviour
         m_RotatingStand.IsRotating = true;
         var car = GameObject.Instantiate(prefab, m_SpawnPoint);
         car.SetDataContext(data);
+
+        CarLoaded?.Invoke(car);
         return car;
     }
 

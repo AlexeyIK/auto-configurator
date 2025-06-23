@@ -12,7 +12,7 @@ public class CategoriesPanelController : PanelControllerBase
     private ListView categoriesList;
     private List<CategoryItemData> categoryItems = new();
 
-    private CategoryItemData selectedCathegory;
+    private CategoryItemData selectedCategory;
 
     [SerializeField] private bool m_UseMockData = false;
     [SerializeField] private CategoriesMock m_MockData = default;
@@ -28,17 +28,17 @@ public class CategoriesPanelController : PanelControllerBase
         }
     }
 
-    public CategoryItemData SelectedCathegory
+    public CategoryItemData SelectedCategory
     {
-        get { return selectedCathegory; }
+        get { return selectedCategory; }
         set
         {
-            selectedCathegory = value;
-            SelectedCathegoryChange?.Invoke(selectedCathegory);
+            selectedCategory = value;
+            SelectedCategoryChange?.Invoke(selectedCategory);
         }
     }
 
-    public event Action<CategoryItemData> SelectedCathegoryChange;
+    public event Action<CategoryItemData> SelectedCategoryChange;
 
     protected override void Awake()
     {
@@ -47,7 +47,6 @@ public class CategoriesPanelController : PanelControllerBase
         AppStateManager.Instance.StateChange += OnStateChange;
         categoriesList.selectionChanged += OnCategorySelection;
         m_MissClickHandler.OnClick.AddListener(OnBackgroundClick);
-
 
         if (m_UseMockData)
             CategoryItems = m_MockData.CathegoryItems;
@@ -60,13 +59,13 @@ public class CategoriesPanelController : PanelControllerBase
         AppStateManager.Instance.StateChange -= OnStateChange;
     }
 
-    public void SelectByType(CategoryType cathegoryType)
+    public void SelectByType(CategoryType categoryType)
     {
         var list = categoriesList.itemsSource as List<CategoryItemData>;
-        SelectedCathegory = list.FirstOrDefault(c => c.Type == cathegoryType);
-        if (SelectedCathegory != null)
+        SelectedCategory = list?.FirstOrDefault(c => c.Type == categoryType);
+        if (SelectedCategory != null)
         {
-            categoriesList.SetSelection(list.IndexOf(SelectedCathegory));
+            categoriesList.SetSelection(list.IndexOf(SelectedCategory));
         }
     }
 
@@ -75,10 +74,10 @@ public class CategoriesPanelController : PanelControllerBase
         if (enumerable.Count() == 0)
         {
             var container = categoriesList.Q<VisualElement>("unity-content-container");
-            var elem = container.ElementAt(CategoryItems.IndexOf(SelectedCathegory));
+            var elem = container.ElementAt(CategoryItems.IndexOf(SelectedCategory));
             elem.Children().First().RemoveFromClassList("list-item-selected");
 
-            SelectedCathegory = null;
+            SelectedCategory = null;
             return;
         }
 
@@ -86,7 +85,7 @@ public class CategoriesPanelController : PanelControllerBase
         {
             var container = categoriesList.Q<VisualElement>("unity-content-container");
 
-            if (SelectedCathegory != null && CategoryItems.Count > 0)
+            if (SelectedCategory != null && CategoryItems.Count > 0)
             {
                 var oldElem = container.ElementAt(categoriesList.selectedIndex);
                 oldElem.RemoveFromClassList("list-item-selected");
@@ -96,7 +95,7 @@ public class CategoriesPanelController : PanelControllerBase
             var elem = container.ElementAt(categoriesList.selectedIndex);
             elem.Children().First().AddToClassList("list-item-selected");
 
-            SelectedCathegory = cathegoryItem;
+            SelectedCategory = cathegoryItem;
         }
 
         foreach (CategoryItemData item in enumerable)

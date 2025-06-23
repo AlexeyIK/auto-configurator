@@ -44,6 +44,7 @@ public class Car : MonoBehaviour
     public void SetDataContext(Automobile dataContext)
     {
         data = dataContext;
+        m_CarID = data.Id;
     }
 
     public void ChangeColorTo(UnityEngine.Color color)

@@ -56,7 +56,8 @@
 .pieces-item-image {
     flex-grow: 1;
     flex-shrink: 0;
-    width: 100%;
+    width: auto;
+    padding: 4px;
     border-radius: 6px 6px 0 0;
     -unity-background-scale-mode: scale-to-fit;
 }
