@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Data.ViewModel
 {
     [Serializable]
     public class PieceItemData
     {
+        private object data = null;
+
         [SerializeField] private int m_Id = 1;
         [SerializeField] private CategoryType m_Type;
         [SerializeField] private string m_Manufacturer = "Manufacturer";
@@ -15,12 +16,13 @@ namespace Data.ViewModel
         [SerializeField] private string m_ImageUrl = "https://";
         [SerializeField] private Texture2D m_Image = default;
 
-        public PieceItemData(int id, CategoryType type, string manufacturer, string modelName, string imageUrl)
+        public PieceItemData(int id, CategoryType type, string manufacturer, string modelName, string imageUrl, object data)
         {
             m_Id = id;
             m_Type = type;
             m_Manufacturer = manufacturer;
             m_ModelName = modelName;
+            this.data = data;
 
             if (imageUrl != null)
                 TryLoadImage(imageUrl);
@@ -48,5 +50,7 @@ namespace Data.ViewModel
         public string Subcaption => m_ModelName;
         public string ImageUrl => m_ImageUrl;
         public Texture2D Image => m_Image;
+
+        public object Data => data;
     }
 }

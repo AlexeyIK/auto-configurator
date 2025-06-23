@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Data.Model;
-using Data.ViewModel;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -44,7 +43,6 @@ public class CategoriesPanelController : PanelControllerBase
     {
         base.Awake();
 
-        AppStateManager.Instance.StateChange += OnStateChange;
         categoriesList.selectionChanged += OnCategorySelection;
         m_MissClickHandler.OnClick.AddListener(OnBackgroundClick);
 
@@ -52,11 +50,16 @@ public class CategoriesPanelController : PanelControllerBase
             CategoryItems = m_MockData.CathegoryItems;
     }
 
+    private void Start()
+    {
+        AppStateManager.Instance.SubscribeStateChange(OnStateChange);
+    }
+
     private void OnDestroy()
     {
+        AppStateManager.Instance.UnsubscriveStateChange(OnStateChange);
         m_MissClickHandler.OnClick.RemoveListener(OnBackgroundClick);
         categoriesList.selectionChanged -= OnCategorySelection;
-        AppStateManager.Instance.StateChange -= OnStateChange;
     }
 
     public void SelectByType(CategoryType categoryType)

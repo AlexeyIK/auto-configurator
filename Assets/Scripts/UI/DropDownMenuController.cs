@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 public class DropDownMenuController : PanelControllerBase
@@ -12,7 +9,7 @@ public class DropDownMenuController : PanelControllerBase
 
     private void Start()
     {
-        AppStateManager.Instance.StateChange += OnStateChange;
+        AppStateManager.Instance.SubscribeStateChange(OnStateChange);
         openButton.clicked += OnOpenButtonClick;
 
         RefreshState();
@@ -21,7 +18,7 @@ public class DropDownMenuController : PanelControllerBase
     private void OnDestroy()
     {
         openButton.clicked -= OnOpenButtonClick;
-        AppStateManager.Instance.StateChange -= OnStateChange;
+        AppStateManager.Instance.UnsubscriveStateChange(OnStateChange);
     }
 
     private void OnOpenButtonClick()

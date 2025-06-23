@@ -1,4 +1,6 @@
-﻿namespace Data.Model
+﻿using System;
+
+namespace Data.Model
 {
     public class Color
     {

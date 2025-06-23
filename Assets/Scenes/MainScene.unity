@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 905986115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cae637193fe074b8b8ff56f4911f1287, type: 3}
+  m_Script: {fileID: 11500000, guid: 89fc317f551144c9aa76ec21bcc3f3c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_AppState: 1
@@ -1042,7 +1042,6 @@ MonoBehaviour:
   m_CarsLoader: {fileID: 917435382934139214}
   m_AttachMaster: {fileID: 0}
   Name: Project name
-  m_CurrentCar: {fileID: 0}
   m_Modifications: []
 --- !u!1 &973341970
 GameObject:
@@ -1425,7 +1424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2d1f8d4d97e4f5ca37db22d1b66478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AuthToken: MWFkbWluNi8yMS8yMDI1IDExOjQwOjEwIFBN
+  m_AuthToken: MWFkbWluMjMuMDYuMjAyNSAxMTo1NzowNw
 --- !u!1 &1393728014
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,26 +14,24 @@ public class AppStateManager : MonoBehaviour
     [SerializeField]
     private AppState m_AppState = AppState.Initial;
 
+    private event Action<AppState> stateChange;
+
     public AppState State
     {
         get { return m_AppState; }
         set
         {
             m_AppState = value;
-            StateChange?.Invoke(m_AppState);
+            stateChange?.Invoke(m_AppState);
         }
     }
 
     public static AppStateManager Instance { get; set; }
 
-    public event Action<AppState> StateChange;
-
     private void Awake()
     {
         if (Instance == null)
             Instance = this;
-
-        StateChange?.Invoke(State);
     }
 
     private void Start()
@@ -43,4 +41,14 @@ public class AppStateManager : MonoBehaviour
         else
             State = AppState.NetworkError;
     }
+
+    public void SubscribeStateChange(Action<AppState> action, bool initialRaise = true)
+    {
+        if (initialRaise)
+            action?.Invoke(State);
+
+        stateChange += action;
+    }
+
+    public void UnsubscriveStateChange(Action<AppState> action) => stateChange -= action;
 }

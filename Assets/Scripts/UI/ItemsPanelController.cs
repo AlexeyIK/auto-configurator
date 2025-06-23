@@ -49,12 +49,16 @@ public class ItemsPanelController : PanelControllerBase
         itemsList.SelectedChange += OnItemSelectedChange;
 
         m_CategoriesController.SelectedCategoryChange += OnCategoryChange;
-        AppStateManager.Instance.StateChange += OnAppStateChange;
+    }
+
+    private void Start()
+    {
+        AppStateManager.Instance.SubscribeStateChange(OnAppStateChange);
     }
 
     private void OnDestroy()
     {
-        AppStateManager.Instance.StateChange -= OnAppStateChange;
+        AppStateManager.Instance.UnsubscriveStateChange(OnAppStateChange);
         m_CategoriesController.SelectedCategoryChange -= OnCategoryChange;
     }
 
@@ -148,7 +152,7 @@ public class ItemsPanelController : PanelControllerBase
             var colors = await NetworkManager.GetAsync<List<Data.Model.Color>>("colors", TokenProvider.Instance.GetToken());
             var items = new List<PieceItemData>();
             foreach (var color in colors)
-                items.Add(new PieceItemData(color.Id, CategoryType.Colors, color.Name, color.HexCode, color.Image));
+                items.Add(new PieceItemData(color.Id, CategoryType.Colors, color.Name, color.HexCode, color.Image, color));
 
             Items = items;
         }
@@ -159,7 +163,7 @@ public class ItemsPanelController : PanelControllerBase
                                                                     TokenProvider.Instance.GetToken());
             var items = new List<PieceItemData>();
             foreach (var piece in pieces)
-                items.Add(new PieceItemData(piece.Id, m_CategoriesController.SelectedCategory.Type, piece.Name, piece.Manufacturer.Name, piece.Image));
+                items.Add(new PieceItemData(piece.Id, m_CategoriesController.SelectedCategory.Type, piece.Name, piece.Manufacturer.Name, piece.Image, piece));
 
             Items = items;
         }
@@ -171,7 +175,7 @@ public class ItemsPanelController : PanelControllerBase
 
         var items = new List<PieceItemData>();
         foreach (var auto in automobiles)
-            items.Add(new PieceItemData(auto.Id, CategoryType.Automobiles, auto.AutoBrand.Name, auto.Name, auto.ImageUrl));
+            items.Add(new PieceItemData(auto.Id, CategoryType.Automobiles, auto.AutoBrand.Name, auto.Name, auto.ImageUrl, auto));
 
         Items = items;
     }

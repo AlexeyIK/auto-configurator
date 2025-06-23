@@ -21,8 +21,8 @@ namespace Data.Model
         public string Name { get; set; }
         public string Commentary { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime CreatedAt { get; }
+        public DateTime? UpdatedAt { get; }
 
         public Automobile Automobile { get; set; }
         public Color Color { get; set; }

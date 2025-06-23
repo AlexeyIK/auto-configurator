@@ -1,6 +1,5 @@
 using System;
 using Data.Model;
-using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
 public class NewProjectPopup : PanelControllerBase
@@ -47,10 +46,12 @@ public class NewProjectPopup : PanelControllerBase
 
     private void OnProjectNameChange(ChangeEvent<string> evt) => submitButton.SetEnabled(!String.IsNullOrWhiteSpace(evt.newValue));
 
-    private void OnSubmitBtnClick()
+    private async void OnSubmitBtnClick()
     {
         // ToDo: make creation request
-        var project = new Project() { Id = 1, ColorId = 0, CreatedAt = DateTime.UtcNow, Status = ProjectStatus.Draft };
+        //var newProject = new Project() { Name = textField.value.Trim(), Commentary = "", ColorId =  }
+        //var project = await NetworkManager.PostAsync("projects", )
+        var project = new Project() { Id = 1, ColorId = 0, Status = ProjectStatus.Draft };
         ProjectManager.Instance.SetProject(project);
 
         AppStateManager.Instance.State = AppStateManager.AppState.ProjectModification;

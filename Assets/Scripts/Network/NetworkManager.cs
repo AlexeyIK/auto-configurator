@@ -1,54 +1,69 @@
-﻿using System.Net.Http;
+﻿using System;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public static class NetworkManager
 {
-    private static readonly HttpClient m_HttpClient = new HttpClient();
-    private const string m_BaseUrl = "https://localhost:5234/api/";
+    private const string BaseUrl = "https://localhost:5234/api/";
 
     public static async Task<T> GetAsync<T>(string endpoint, string token = null)
     {
-        var request = new HttpRequestMessage(HttpMethod.Get, m_BaseUrl + endpoint);
+        using var req = UnityWebRequest.Get(BaseUrl + endpoint);
+
         if (!string.IsNullOrEmpty(token))
-            request.Headers.Add("Auth", token);
+            req.SetRequestHeader("Auth", token);
 
-        var response = await m_HttpClient.SendAsync(request);
-        string json = await response.Content.ReadAsStringAsync();
+        await SendAsync(req);
 
-        if (!response.IsSuccessStatusCode)
+        if (req.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError($"GET {endpoint} failed: {response.StatusCode} - {json}");
+            Debug.LogError($"GET {endpoint} → {req.responseCode} | {req.error}");
             return default;
         }
 
-        return JsonConvert.DeserializeObject<T>(json);
+        return JsonConvert.DeserializeObject<T>(req.downloadHandler.text);
     }
 
     public static async Task<TResponse> PostAsync<TRequest, TResponse>(string endpoint, TRequest payload, string token = null)
     {
-        var json = JsonConvert.SerializeObject(payload);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        string json = JsonConvert.SerializeObject(payload);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
 
-        var request = new HttpRequestMessage(HttpMethod.Post, m_BaseUrl + endpoint)
+        using var req = new UnityWebRequest(BaseUrl + endpoint, UnityWebRequest.kHttpVerbPOST)
         {
-            Content = content
+            uploadHandler = new UploadHandlerRaw(bodyRaw),
+            downloadHandler = new DownloadHandlerBuffer()
         };
 
+        req.SetRequestHeader("Content-Type", "application/json");
         if (!string.IsNullOrEmpty(token))
-            request.Headers.Add("Auth", token);
+            req.SetRequestHeader("Auth", token);
 
-        var response = await m_HttpClient.SendAsync(request);
-        string responseJson = await response.Content.ReadAsStringAsync();
+        await SendAsync(req);
 
-        if (!response.IsSuccessStatusCode)
+        if (req.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError($"POST {endpoint} failed: {response.StatusCode} - {responseJson}");
+            Debug.LogError($"POST {endpoint} → {req.responseCode} | {req.error} | {req.downloadHandler.text}");
             return default;
         }
 
-        return JsonConvert.DeserializeObject<TResponse>(responseJson);
+        return JsonConvert.DeserializeObject<TResponse>(req.downloadHandler.text);
+    }
+
+    /// <summary>
+    /// Универсальная обёртка, превращающая UnityWebRequest в Task.
+    /// </summary>
+    private static async Task SendAsync(UnityWebRequest req)
+    {
+#if UNITY_2023_1_OR_NEWER     // начиная с Unity 2023 SendWebRequest ― awaitable
+        await req.SendWebRequest();
+#else                         // Unity 2022/2021: ждём вручную в цикле
+        var op = req.SendWebRequest();
+        while (!op.isDone)
+            await Task.Yield();
+#endif
     }
 }
