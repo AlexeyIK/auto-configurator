@@ -20,6 +20,7 @@ public class ProjectManager : MonoBehaviour
         }
     }
 
+    private Car currentCar;
     private Project projectData;
 
     [SerializeField] private ItemsPanelController m_ItemsPanel = default;
@@ -27,10 +28,9 @@ public class ProjectManager : MonoBehaviour
     [SerializeField] private PieceAttachMaster m_AttachMaster = default;
     [Header("Project data")]
     [SerializeField] private string Name = "Project name";
-    [SerializeField] private Car m_CurrentCar = default;
     [SerializeField] private List<ModifiedGroup> m_Modifications = new();
 
-    public Car CurrentCar => m_CurrentCar;
+    public Car CurrentCar => currentCar;
 
     public List<ModifiedGroup> Modifications => m_Modifications;
 
@@ -61,13 +61,12 @@ public class ProjectManager : MonoBehaviour
     {
         if (category == null)
         {
-            m_CurrentCar = await m_CarsLoader.LoadCar(data);
+            currentCar = await m_CarsLoader.LoadCar(data);
             CarSet?.Invoke();
         }
         else if (category.Type == CategoryType.Colors)
         {
-            if (ColorUtility.TryParseHtmlString($"#{data.Subcaption}", out var color))
-                m_CurrentCar.ChangeColorTo(color);
+            currentCar.ChangeColorTo(data.Data as Data.Model.Color);
         }
         else
         {
@@ -78,8 +77,9 @@ public class ProjectManager : MonoBehaviour
         }
     }
 
-    internal void SetProject(Project project)
+    public void SetProject(Project project)
     {
         projectData = project;
+        projectData.Automobile = currentCar.Data;
     }
 }
