@@ -6,14 +6,14 @@ using UnityEngine.InputSystem;
 [DisallowMultipleComponent]
 public class InteractionHandler : MonoBehaviour
 {
-    private bool _isHover;
-    private bool _isCaptured;
+    private bool isHover;
+    private bool isCaptured;
     private Camera _camera;
 
-    private Outline _outline;
+    private Outline outline;
 
-    private InputAction _pointerClickAction;
-    private InputAction _pointerPositionAction;
+    private InputAction pointerClickAction;
+    private InputAction pointerPositionAction;
 
     [SerializeField] private bool _isActive = true;
     [SerializeField] private bool _debugMode = false;
@@ -30,8 +30,8 @@ public class InteractionHandler : MonoBehaviour
             if (!_isActive)
             {
                 SwitchOutline(false);
-                _isHover = false;
-                _isCaptured = false;
+                isHover = false;
+                isCaptured = false;
             }
         }
     }
@@ -46,23 +46,23 @@ public class InteractionHandler : MonoBehaviour
     {
         _camera = Camera.main;
 
-        _outline = gameObject.AddComponent<Outline>();
-        _outline.OutlineMode = Outline.Mode.OutlineAll;
-        _outline.OutlineColor = Color.red;
-        _outline.OutlineWidth = 4f;
-        _outline.enabled = false;
+        outline = gameObject.AddComponent<Outline>();
+        outline.OutlineMode = Outline.Mode.OutlineAll;
+        outline.OutlineColor = Color.red;
+        outline.OutlineWidth = 4f;
+        outline.enabled = false;
 
-        _pointerPositionAction = InputSystem.actions.FindAction("DragPosition");
-        _pointerClickAction = InputSystem.actions.FindAction("Click");
+        pointerPositionAction = InputSystem.actions.FindAction("DragPosition");
+        pointerClickAction = InputSystem.actions.FindAction("Click");
 
-        _pointerPositionAction.performed += OnPointerMove;
-        _pointerClickAction.performed += OnPointerClick;
+        pointerPositionAction.performed += OnPointerMove;
+        pointerClickAction.performed += OnPointerClick;
     }
 
     private void OnDestroy()
     {
-        _pointerPositionAction.performed -= OnPointerMove;
-        _pointerClickAction.performed -= OnPointerClick;
+        pointerPositionAction.performed -= OnPointerMove;
+        pointerClickAction.performed -= OnPointerClick;
 
         var collider = GetComponentInChildren<Collider>();
         collider.enabled = false;
@@ -72,7 +72,7 @@ public class InteractionHandler : MonoBehaviour
     {
         var isPressed = context.ReadValueAsButton();
 
-        if (_isHover && isPressed)
+        if (isHover && isPressed)
         {
             if (_clickHighlight)
                 SwitchOutline(true, true);
@@ -80,17 +80,17 @@ public class InteractionHandler : MonoBehaviour
             if (_debugMode)
                 Debug.Log($"[{context.ReadValueAsButton()}] Click on object {gameObject.name}");
 
-            _isCaptured = true;
+            isCaptured = true;
             OnClick?.Invoke(gameObject);
         }
-        else if (_isCaptured)
+        else if (isCaptured)
         {
             SwitchOutline(false);
 
             if (_debugMode)
                 Debug.Log($"[{context.ReadValueAsButton()}] Release object {gameObject.name}");
 
-            _isCaptured = false;
+            isCaptured = false;
             OnRelease?.Invoke(gameObject);
         }
     }
@@ -107,14 +107,14 @@ public class InteractionHandler : MonoBehaviour
         {
             if (hit.transform == transform)
             {
-                if (!_isHover)
+                if (!isHover)
                     PointerEnter();
 
                 return;
             }
         }
 
-        if (_isHover)
+        if (isHover)
             PointerLeave();
     }
 
@@ -123,7 +123,7 @@ public class InteractionHandler : MonoBehaviour
         if (_hoverHighlight)
             SwitchOutline(true);
 
-        _isHover = true;
+        isHover = true;
         OnHoverStart?.Invoke();
     }
 
@@ -131,13 +131,13 @@ public class InteractionHandler : MonoBehaviour
     {
         SwitchOutline(false);
 
-        _isHover = false;
+        isHover = false;
         OnHoverEnd?.Invoke();
     }
 
     private void SwitchOutline(bool isEnable, bool isPress = false)
     {
-        _outline.OutlineColor = isPress ? Color.cyan : Color.red;
-        _outline.enabled = isEnable;
+        outline.OutlineColor = isPress ? Color.cyan : Color.red;
+        outline.enabled = isEnable;
     }
 }
