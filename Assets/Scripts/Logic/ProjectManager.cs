@@ -183,15 +183,19 @@ public class ProjectManager : MonoBehaviour
 
         projectData = project;
         projectData.Automobile = projectData.Automobile;
+        m_ProjectName = projectData.Name;
+        m_Commentary = projectData.Commentary;
+
         currentCar = await m_CarsLoader.SpawnACar(project.Automobile);
         currentCar.ChangeColorTo(projectData.Color);
-        CarSet?.Invoke();
 
         foreach (var modification in projectData.Modifications)
         {
             m_AttachMaster.LoadAndAttach(modification.Piece, modification.Piece.Category, false);
             Modifications.Add(new ModifiedGroup(modification.Piece.Category.Type, new Modification(projectData.Id, modification.Piece.Id, modification.ColorId)));
         }
+
+        CarSet?.Invoke();
 
         return true;
     }
