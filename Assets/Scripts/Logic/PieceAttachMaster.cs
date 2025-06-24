@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Data.Model;
 using Data.ViewModel;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class PieceAttachMaster : MonoBehaviour
 {

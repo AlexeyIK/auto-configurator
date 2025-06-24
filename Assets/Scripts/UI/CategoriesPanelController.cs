@@ -84,7 +84,7 @@ public class CategoriesPanelController : PanelControllerBase
             return;
         }
 
-        if (enumerable.FirstOrDefault() is CategoryItemData cathegoryItem)
+        if (enumerable.FirstOrDefault() is CategoryItemData categoryItem)
         {
             var container = categoriesList.Q<VisualElement>("unity-content-container");
 
@@ -98,7 +98,7 @@ public class CategoriesPanelController : PanelControllerBase
             var elem = container.ElementAt(categoriesList.selectedIndex);
             elem.Children().First().AddToClassList("list-item-selected");
 
-            SelectedCategory = cathegoryItem;
+            SelectedCategory = categoryItem;
         }
 
         foreach (CategoryItemData item in enumerable)
