@@ -8,6 +8,8 @@ public class DropDownMenuController : PanelControllerBase
     private Button openButton;
     private List<Button> buttons;
 
+    public bool IsOpen => isOpen;
+
     private void Start()
     {
         AppStateManager.Instance.SubscribeStateChange(OnStateChange);
@@ -57,6 +59,18 @@ public class DropDownMenuController : PanelControllerBase
     {
         isOpen = !isOpen;
         RefreshState();
+    }
+
+    public override void HidePanel()
+    {
+        base.HidePanel();
+        isOpen = false;
+    }
+
+    public override void ShowPanel()
+    {
+        base.ShowPanel();
+        isOpen = true;
     }
 
     private void RefreshState()
