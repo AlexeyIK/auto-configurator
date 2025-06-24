@@ -170,7 +170,16 @@ public class ProjectManager : MonoBehaviour
             Debug.LogWarning("Сохраните проект, чтобы не потерять наработки!");
     }
 
-    public void LoadProject(int projectId)
+    public async Task<bool> LoadProject(int projectId)
     {
+        var project = await NetworkManager.GetAsync<Project>($"projects/{projectId}", TokenProvider.Instance.GetToken());
+        if (project == null)
+            return false;
+
+#if UNITY_EDITOR
+        Debug.Log("Project loaded:\n" + JsonConvert.SerializeObject(project));
+#endif
+
+        return true;
     }
 }

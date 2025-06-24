@@ -67,8 +67,6 @@ public class ProjectsMenuController : PanelControllerBase
     private async void OnPanelOpen()
     {
         m_DropdownMenuController.HidePanel();
-        ShowPanel();
-        selectedProject = null;
 
         //var projects = new List<Project>()
         //{
@@ -96,17 +94,22 @@ public class ProjectsMenuController : PanelControllerBase
         }).ToList();
 
         ProjectsList = projectItems;
+        selectedProject = null;
+        ShowPanel();
     }
 
-    private void OnLoadButtonClick()
+    private async void OnLoadButtonClick()
     {
-        ProjectManager.Instance.LoadProject(selectedProject.Id);
+        await ProjectManager.Instance.LoadProject(selectedProject.Id);
+
+        ProjectsList = null;
+        HidePanel();
     }
 
     private void OnCancelButtonClick()
     {
-        HidePanel();
         ProjectsList = null;
+        HidePanel();
     }
 
     private void OnSelectedProjectChange(VisualElement element)
