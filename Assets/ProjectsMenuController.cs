@@ -100,10 +100,12 @@ public class ProjectsMenuController : PanelControllerBase
 
     private async void OnLoadButtonClick()
     {
-        await ProjectManager.Instance.LoadProject(selectedProject.Id);
+        HidePanel();
+
+        if (await ProjectManager.Instance.LoadProject(selectedProject.Id))
+            AppStateManager.Instance.State = AppStateManager.AppState.ProjectModification;
 
         ProjectsList = null;
-        HidePanel();
     }
 
     private void OnCancelButtonClick()

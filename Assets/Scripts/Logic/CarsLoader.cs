@@ -57,7 +57,7 @@ public class CarsLoader : MonoBehaviour
     /// Создание автомобиля по ссылке
     /// </summary>
     /// <param name="carPath"></param>
-    private async Task<Car> SpawnACar(Automobile automobileData)
+    public async Task<Car> SpawnACar(Automobile automobileData)
     {
         var modelPath = automobileData.ModelUrl;
 

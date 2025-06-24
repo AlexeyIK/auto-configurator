@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Data.Model;
 using Data.ViewModel;
 using Newtonsoft.Json;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class ProjectManager : MonoBehaviour
@@ -144,7 +145,7 @@ public class ProjectManager : MonoBehaviour
             Commentary = m_Commentary,
             AutomobileId = CurrentCar.CarId,
             ColorId = CurrentCar.ColorId,
-            Modifications = projectData.Modifications = Modifications.Select(s => s.Modification).ToList()
+            Modifications = Modifications.Select(s => s.Modification).ToList()
         };
 
         var response = await NetworkManager.PutAsync<ProjectDto, Project>($"projects/{projectData.Id}", payload, TokenProvider.Instance.GetToken());
@@ -179,6 +180,18 @@ public class ProjectManager : MonoBehaviour
 #if UNITY_EDITOR
         Debug.Log("Project loaded:\n" + JsonConvert.SerializeObject(project));
 #endif
+
+        projectData = project;
+        projectData.Automobile = projectData.Automobile;
+        currentCar = await m_CarsLoader.SpawnACar(project.Automobile);
+        currentCar.ChangeColorTo(projectData.Color);
+        CarSet?.Invoke();
+
+        foreach (var modification in projectData.Modifications)
+        {
+            m_AttachMaster.LoadAndAttach(modification.Piece, modification.Piece.Category, false);
+            Modifications.Add(new ModifiedGroup(modification.Piece.Category.Type, new Modification(projectData.Id, modification.Piece.Id, modification.ColorId)));
+        }
 
         return true;
     }
