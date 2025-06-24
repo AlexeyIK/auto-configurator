@@ -21,7 +21,7 @@ public class ProjectsMenuController : PanelControllerBase
     private StackPanelView stackPanel;
 
     private List<ProjectItem> projectsList;
-    private Project selectedProject;
+    private ProjectItem selectedProject;
 
     public List<ProjectItem> ProjectsList
     {
@@ -111,8 +111,10 @@ public class ProjectsMenuController : PanelControllerBase
 
     private void OnSelectedProjectChange(VisualElement element)
     {
+        loadButton.SetEnabled(element != null);
+
         if (selectedProject != element.dataSource)
-            selectedProject = element.dataSource as Project;
+            selectedProject = element.dataSource as ProjectItem;
     }
 
     protected override VisualElement GetPanelVisualElement()
