@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Data.Model;
 using Data.ViewModel;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class PieceAttachMaster : MonoBehaviour
 {
@@ -29,6 +30,18 @@ public class PieceAttachMaster : MonoBehaviour
                                                                      $"&automobileId={ProjectManager.Instance.CurrentCar.CarId}",
                                                                      TokenProvider.Instance.GetToken());
                 var wheel = await LoadWheel(wheelData.ModelUrl);
+                HideParts(m_OriginalWheels);
+                ChangeParts(wheel, m_WheelsSockets.Select(w => w.transform).ToArray(), isModified);
+                break;
+        }
+    }
+
+    public async void LoadAndAttach(Piece piece, Category category, bool isModified)
+    {
+        switch (category.Type)
+        {
+            case CategoryType.Wheels:
+                var wheel = await LoadWheel(piece.ModelUrl);
                 HideParts(m_OriginalWheels);
                 ChangeParts(wheel, m_WheelsSockets.Select(w => w.transform).ToArray(), isModified);
                 break;
