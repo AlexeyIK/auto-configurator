@@ -24,17 +24,31 @@ public class ProjectManager : MonoBehaviour
 
     private Car currentCar;
     private Project projectData;
+    private bool isSaved = true;
 
     [SerializeField] private ItemsPanelController m_ItemsPanel = default;
     [SerializeField] private CarsLoader m_CarsLoader = default;
     [SerializeField] private PieceAttachMaster m_AttachMaster = default;
+    [SerializeField] private DropDownMenuController m_DropDownMenu = default;
     [Header("Project data")]
-    [SerializeField] private string Name = "Project name";
+    [SerializeField] private string m_ProjectName = "Имя проекта";
+    [TextArea(2, 3)]
+    [SerializeField] private string m_Commentary = "Комментарий от менеджера";
     [SerializeField] private List<ModifiedGroup> m_Modifications = new();
 
     public Car CurrentCar => currentCar;
 
     public List<ModifiedGroup> Modifications => m_Modifications;
+
+    public bool IsSaved
+    {
+        get { return isSaved; }
+        set
+        {
+            isSaved = value;
+            m_DropDownMenu.SetSaveButtonActive(!isSaved);
+        }
+    }
 
     public event Action CarSet;
 
@@ -47,6 +61,13 @@ public class ProjectManager : MonoBehaviour
 
         m_ItemsPanel.SelectedItemChange += OnSelectedItemChange;
         m_CarsLoader.CarLoaded += OnCarHasLoaded;
+    }
+
+    private void Start()
+    {
+        //m_DropDownMenu.OpenProjectBtnClick += OnOpenProjectClick;
+        m_DropDownMenu.SubscribeSaveProjectClick(OnSaveProjectClick);
+        m_DropDownMenu.SubscribeNewProjectClick(OnNewProjectClick);
     }
 
     private void OnDestroy()
@@ -69,18 +90,25 @@ public class ProjectManager : MonoBehaviour
         else if (category.Type == CategoryType.Colors)
         {
             currentCar.ChangeColorTo(data.Data as Data.Model.Color);
+
+            IsSaved = false;
         }
         else
         {
             // ToDo: сделать обработку измененных деталей и ее отмену
             var isModified = Modifications.Any(m => m.Type == category.Type);
             m_AttachMaster.LoadAndAttach(data, category, isModified);
-            Modifications.Add(new ModifiedGroup(CategoryType.Wheels, new Modification(projectData.Id, data.Id, null)));
+            Modifications.Add(new ModifiedGroup(category.Type, new Modification(projectData.Id, data.Id, null)));
+
+            IsSaved = false;
         }
     }
 
     public async Task<bool> CreateProject(string projectName, string projectComment = "")
     {
+        m_ProjectName = projectName;
+        m_Commentary = projectComment;
+
         var payload = new ProjectDto
         {
             Name = projectName,
@@ -90,13 +118,17 @@ public class ProjectManager : MonoBehaviour
             Modifications = new()
         };
 
+#if UNITY_EDITOR
         Debug.Log("New project:\n" + JsonConvert.SerializeObject(payload));
+#endif
 
         var project = await NetworkManager.PostAsync<ProjectDto, Project>("projects", payload, TokenProvider.Instance.GetToken());
         if (project == null)
             return false;
 
-        Debug.Log("Project created:\n" + JsonConvert.SerializeObject(project));
+#if UNITY_EDITOR
+        Debug.Log("Project created: " + JsonConvert.SerializeObject(project));
+#endif
 
         projectData = project;
         projectData.Automobile = currentCar.Data;
@@ -104,8 +136,41 @@ public class ProjectManager : MonoBehaviour
         return true;
     }
 
+    private async void OnSaveProjectClick()
+    {
+        var payload = new ProjectDto
+        {
+            Name = m_ProjectName,
+            Commentary = m_Commentary,
+            AutomobileId = CurrentCar.CarId,
+            ColorId = CurrentCar.ColorId,
+            Modifications = projectData.Modifications = Modifications.Select(s => s.Modification).ToList()
+        };
+
+        var response = await NetworkManager.PutAsync<ProjectDto, Project>($"projects/{projectData.Id}", payload, TokenProvider.Instance.GetToken());
+        if (response != null)
+            projectData = response;
+
+        IsSaved = true;
+        m_DropDownMenu.HidePanel();
+
+#if UNITY_EDITOR
+        Debug.Log("Project updated: " + JsonConvert.SerializeObject(response));
+#endif
+    }
+
+    private void OnNewProjectClick()
+    {
+        if (IsSaved)
+        {
+            AppStateManager.Instance.State = AppStateManager.AppState.Start;
+            m_DropDownMenu.HidePanel();
+        }
+        else
+            Debug.LogWarning("Сохраните проект, чтобы не потерять наработки!");
+    }
+
     public void LoadProject(int projectId)
     {
-
     }
 }

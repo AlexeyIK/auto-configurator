@@ -38,9 +38,9 @@
     border-color: #70B9E6;
 }
 
-.stack-panel--selected {
+#PiecesPanel .stack-panel--selected {
     background-image: resource('UI/card_gradient-selected');
-    border-color: #2394DC;
+    border-color: var(--color-item-selected);
 }
 
 .pieces-item-caption {

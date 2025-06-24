@@ -1041,7 +1041,10 @@ MonoBehaviour:
   m_ItemsPanel: {fileID: 973341974}
   m_CarsLoader: {fileID: 917435382934139214}
   m_AttachMaster: {fileID: 0}
-  Name: Project name
+  m_DropDownMenu: {fileID: 973341976}
+  m_ProjectName: "\u0418\u043C\u044F \u043F\u0440\u043E\u0435\u043A\u0442\u0430"
+  m_Commentary: "\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439
+    \u043E\u0442 \u043C\u0435\u043D\u0435\u0434\u0436\u0435\u0440\u0430"
   m_Modifications: []
 --- !u!1 &973341970
 GameObject:
@@ -1055,8 +1058,9 @@ GameObject:
   - component: {fileID: 973341971}
   - component: {fileID: 973341973}
   - component: {fileID: 973341974}
-  - component: {fileID: 973341975}
   - component: {fileID: 973341976}
+  - component: {fileID: 973341975}
+  - component: {fileID: 973341977}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -1158,6 +1162,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f161fe7aa50d4c4dab48c749a2e1b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &973341977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 973341970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d200425c5b7042a282ba7b120ab66cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DropdownMenuController: {fileID: 973341976}
 --- !u!1 &1237188545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,7 +1441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2d1f8d4d97e4f5ca37db22d1b66478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AuthToken: MWFkbWluMjMuMDYuMjAyNSAxMTo1NzowNw
+  m_AuthToken: MWFkbWluMjMuMDYuMjAyNSAxODozODozOQ
 --- !u!1 &1393728014
 GameObject:
   m_ObjectHideFlags: 0

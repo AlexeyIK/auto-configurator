@@ -20,6 +20,22 @@ public class CarsLoader : MonoBehaviour
         SpawnACar(m_DefaultCar);
     }
 
+    private void Start()
+    {
+        AppStateManager.Instance.SubscribeStateChange(OnAppStateChange);
+    }
+
+    private void OnDestroy()
+    {
+        AppStateManager.Instance.UnsubscriveStateChange(OnAppStateChange);
+    }
+
+    private void OnAppStateChange(AppStateManager.AppState state)
+    {
+        if (state == AppStateManager.AppState.Start)
+            SpawnACar(m_DefaultCar);
+    }
+
     /// <summary>
     /// Загрузка автомобиля из данных
     /// </summary>

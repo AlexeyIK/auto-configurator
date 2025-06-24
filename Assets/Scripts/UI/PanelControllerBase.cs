@@ -34,7 +34,7 @@ public abstract class PanelControllerBase : MonoBehaviour
     /// <summary>
     /// To hide any panel
     /// </summary>
-    protected virtual void HidePanel()
+    public virtual void HidePanel()
     {
         panel.SetEnabled(false);
         panel.style.display = DisplayStyle.None;
@@ -43,7 +43,7 @@ public abstract class PanelControllerBase : MonoBehaviour
     /// <summary>
     /// To show any panel
     /// </summary>
-    protected virtual void ShowPanel()
+    public virtual void ShowPanel()
     {
         panel.SetEnabled(true);
         panel.style.display = DisplayStyle.Flex;

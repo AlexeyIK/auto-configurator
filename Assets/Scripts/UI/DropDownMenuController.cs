@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 
@@ -17,8 +18,39 @@ public class DropDownMenuController : PanelControllerBase
 
     private void OnDestroy()
     {
-        openButton.clicked -= OnOpenButtonClick;
         AppStateManager.Instance.UnsubscriveStateChange(OnStateChange);
+    }
+
+    public void SubscribeSaveProjectClick(Action action)
+    {
+        buttons[0].clicked += action;
+    }
+
+    public void SubscribeOpenProjectClick(Action action)
+    {
+        buttons[1].clicked += action;
+    }
+
+    public void SubscribeNewProjectClick(Action action)
+    {
+        buttons[2].clicked += action;
+    }
+
+    public void SetSaveButtonActive(bool isActive)
+    {
+        buttons[0].SetEnabled(isActive);
+    }
+
+    private void OnStateChange(AppStateManager.AppState state)
+    {
+        if (state != AppStateManager.AppState.ProjectModification)
+        {
+            SetSaveButtonActive(false);
+        }
+        else
+        {
+            SetSaveButtonActive(true);
+        }
     }
 
     private void OnOpenButtonClick()
@@ -27,31 +59,19 @@ public class DropDownMenuController : PanelControllerBase
         RefreshState();
     }
 
-    protected override VisualElement GetPanelVisualElement()
-    {
-        openButton = document.rootVisualElement.Q<Button>("OpenMenuButton");
-        var query = document.rootVisualElement.Query<Button>(className: "drop-down-item");
-        buttons = query.ToList();
-        return document.rootVisualElement.Q<VisualElement>("DropDownPanel");
-    }
-
-    private void OnStateChange(AppStateManager.AppState state)
-    {
-        if (state != AppStateManager.AppState.ProjectModification)
-        {
-            buttons[1].SetEnabled(false);
-        }
-        else
-        {
-            buttons[1].SetEnabled(true);
-        }
-    }
-
     private void RefreshState()
     {
         if (isOpen)
             ShowPanel();
         else
             HidePanel();
+    }
+
+    protected override VisualElement GetPanelVisualElement()
+    {
+        openButton = document.rootVisualElement.Q<Button>("OpenMenuButton");
+        var query = document.rootVisualElement.Query<Button>(className: "drop-down-item");
+        buttons = query.ToList();
+        return document.rootVisualElement.Q<VisualElement>("DropDownPanel");
     }
 }

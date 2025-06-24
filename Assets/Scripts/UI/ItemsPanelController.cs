@@ -13,8 +13,6 @@ public class ItemsPanelController : PanelControllerBase
     private Label titleText;
     private StackPanelView itemsList;
 
-    //private CategoryItemData selectedCategory;
-
     [SerializeField] private bool m_UseMockData = false;
     [SerializeField] private ItemsMock m_MockData = default;
     [SerializeField] private CategoriesPanelController m_CategoriesController = default;
@@ -180,14 +178,14 @@ public class ItemsPanelController : PanelControllerBase
         Items = items;
     }
 
-    protected override void HidePanel()
+    public override void HidePanel()
     {
         base.HidePanel();
         Items = new List<PieceItemData>();
         document.rootVisualElement.Q<Label>("ItemsTitle").text = "";
     }
 
-    protected override void ShowPanel()
+    public override void ShowPanel()
     {
         base.ShowPanel();
     }

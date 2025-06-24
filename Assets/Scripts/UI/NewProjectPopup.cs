@@ -1,5 +1,4 @@
 using System;
-using Data.Model;
 using UnityEngine.UIElements;
 
 public class NewProjectPopup : PanelControllerBase
@@ -33,23 +32,42 @@ public class NewProjectPopup : PanelControllerBase
     private void Start()
     {
         ProjectManager.Instance.CarSet += OnCarSet;
+        AppStateManager.Instance.SubscribeStateChange(OnAppStateChange);
     }
 
     private void OnDestroy()
     {
+        AppStateManager.Instance.UnsubscriveStateChange(OnAppStateChange);
         textField.UnregisterValueChangedCallback(OnProjectNameChange);
         ProjectManager.Instance.CarSet -= OnCarSet;
+
         submitButton.clicked -= OnSubmitBtnClick;
         cancelButton.clicked -= OnCancelBtnClick;
         startProjectButton.clicked -= OnStartProjectClick;
+    }
+
+    private void OnAppStateChange(AppStateManager.AppState state)
+    {
+        switch (state)
+        {
+            case AppStateManager.AppState.Start:
+                startProjectButton.style.display = DisplayStyle.Flex;
+                startProjectButton.SetEnabled(false);
+                break;
+
+            case AppStateManager.AppState.ProjectModification:
+            case AppStateManager.AppState.NetworkError:
+                startProjectButton.style.display = DisplayStyle.None;
+                textField.Clear();
+                HidePanel();
+                break;
+        }
     }
 
     private void OnProjectNameChange(ChangeEvent<string> evt) => submitButton.SetEnabled(!String.IsNullOrWhiteSpace(evt.newValue));
 
     private async void OnSubmitBtnClick()
     {
-        // ToDo: make creation request
-        //var project = new Project() { Id = 1, ColorId = 0, Status = ProjectStatus.Draft };
         var hasCreated = await ProjectManager.Instance.CreateProject(textField.value);
         if (!hasCreated)
         {
@@ -58,8 +76,6 @@ public class NewProjectPopup : PanelControllerBase
         }
 
         AppStateManager.Instance.State = AppStateManager.AppState.ProjectModification;
-        startProjectButton.style.display = DisplayStyle.None;
-        HidePanel();
     }
 
     private void OnCarSet()
@@ -69,7 +85,6 @@ public class NewProjectPopup : PanelControllerBase
 
     private void OnCancelBtnClick()
     {
-        //textField.Clear();
         HidePanel();
     }
 

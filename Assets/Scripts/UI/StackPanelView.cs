@@ -71,6 +71,7 @@ public partial class StackPanelView : ScrollView
                 elem.userData = ItemsSource[i];
                 MakeSelectable(elem);
                 Add(elem);
+                elem.Children().First().AddToClassList("stack-panel-item");
 
                 if (gap > 0 && i < ItemsSource.Count - 1)
                 {

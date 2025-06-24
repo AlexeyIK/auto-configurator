@@ -138,6 +138,8 @@ public class CategoriesPanelController : PanelControllerBase
                 break;
 
             case AppStateManager.AppState.Start:
+                selectedCategory = null;
+                CategoryItems = new();
                 HidePanel();
                 break;
 

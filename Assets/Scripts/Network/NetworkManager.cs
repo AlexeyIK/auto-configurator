@@ -53,6 +53,33 @@ public static class NetworkManager
         return JsonConvert.DeserializeObject<TResponse>(req.downloadHandler.text);
     }
 
+    public static async Task<TResponse> PutAsync<TRequest, TResponse>(string endpoint, TRequest payload, string token = null)
+    {
+        string json = JsonConvert.SerializeObject(payload);
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
+
+        using var req = new UnityWebRequest(BaseUrl + endpoint, UnityWebRequest.kHttpVerbPUT)
+        {
+            uploadHandler = new UploadHandlerRaw(bodyRaw),
+            downloadHandler = new DownloadHandlerBuffer()
+        };
+
+        req.SetRequestHeader("Content-Type", "application/json");
+
+        if (!string.IsNullOrEmpty(token))
+            req.SetRequestHeader("Auth", token);
+
+        await SendAsync(req);
+
+        if (req.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError($"PUT {endpoint} failed: {req.responseCode} | {req.error} | {req.downloadHandler.text}");
+            return default;
+        }
+
+        return JsonConvert.DeserializeObject<TResponse>(req.downloadHandler.text);
+    }
+
     /// <summary>
     /// Универсальная обёртка, превращающая UnityWebRequest в Task.
     /// </summary>

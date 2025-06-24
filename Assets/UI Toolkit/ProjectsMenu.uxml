@@ -1,0 +1,52 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/common.uss?fileID=7433441132597879392&amp;guid=7d85f91042b3547958db9c63dde08734&amp;type=3#common" />
+    <ui:VisualElement style="width: 100%; height: 100%; align-self: center; align-items: center; justify-content: center; align-content: center; flex-direction: column; background-color: rgba(0, 0, 0, 0.35);">
+        <ui:VisualElement name="MyProjectsPopup" class="popup-panel">
+            <ui:VisualElement name="Header" class="popup-header" style="background-image: resource(&apos;UI/header-gradient&apos;); -unity-font-definition: url(&quot;project://database/Assets/Resources/Fonts/NotoSans_SemiCondensed-Bold.ttf?fileID=12800000&amp;guid=a01e37f01c6304aaab52b7b9d8c72a94&amp;type=3#NotoSans_SemiCondensed-Bold&quot;); font-size: 20px; -unity-font-style: normal;">
+                <ui:Label text="Мои проекты" style="-unity-text-align: middle-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Content" class="popup-content">
+                <ui:VisualElement name="Table" class="popup-form" style="flex-direction: column; align-items: stretch; align-self: auto;">
+                    <ui:VisualElement name="TableHeader" class="table-header">
+                        <ui:Label text="Название проекта" class="table-header-item table-header-item__first-child" style="margin-right: 4px;" />
+                        <ui:Label text="Дата создания" class="table-header-item" style="flex-grow: 1; margin-right: 4px;" />
+                        <ui:Label text="Дата изменения" class="table-header-item table-header-item__last-child" style="flex-grow: 1;" />
+                    </ui:VisualElement>
+                    <StackPanelView name="ProjectsList" items-element="project://database/Assets/UI%20Toolkit/ProjectItem.uxml?fileID=9197481963319205126&amp;guid=2d90202031ebb475cb825162a86a6019&amp;type=3#ProjectItem" direction="Vertical" gap="2">
+                        <ui:VisualElement name="TableContent" class="table-content">
+                            <ui:VisualElement>
+                                <ui:Label text="Название проекта" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1;">
+                                <ui:Label text="Label" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1;">
+                                <ui:Label text="Label" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="TableContent" class="table-content">
+                            <ui:VisualElement>
+                                <ui:Label text="Название проекта" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1;">
+                                <ui:Label text="Label" />
+                            </ui:VisualElement>
+                            <ui:VisualElement style="flex-grow: 1;">
+                                <ui:Label text="Label" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1;">
+                            <ui:Label text="Label" />
+                            <ui:Label text="Label" />
+                            <ui:Label text="Label" />
+                        </ui:VisualElement>
+                    </StackPanelView>
+                </ui:VisualElement>
+                <ui:VisualElement name="Buttons" class="popup-buttons">
+                    <ui:Button text="Отмена" name="CancelBtn" class="secondary-button" style="margin-right: 32px;" />
+                    <ui:Button text="Открыть" name="LoadBtn" class="primary-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
