@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        deleteCookie("auth_token");
+
         fetch("https://localhost:5234/api/Registration", {
             method: "POST",
             body: formData
