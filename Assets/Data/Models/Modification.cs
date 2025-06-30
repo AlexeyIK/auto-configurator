@@ -13,6 +13,7 @@
 
         public Modification(int id, int projectId, int pieceId, int? colorId = null)
         {
+            Id = id;
             ProjectId = projectId;
             PieceId = pieceId;
             ColorId = colorId;
