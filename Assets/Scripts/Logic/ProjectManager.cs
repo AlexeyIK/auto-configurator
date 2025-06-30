@@ -77,6 +77,7 @@ public class ProjectManager : MonoBehaviour
 
     private void OnCarHasLoaded(Car car)
     {
+        currentCar = car;
         m_AttachMaster = car.GetComponent<PieceAttachMaster>();
     }
 
@@ -98,7 +99,17 @@ public class ProjectManager : MonoBehaviour
             // ToDo: сделать обработку измененных деталей и ее отмену
             var isModified = Modifications.Any(m => m.Type == category.Type);
             m_AttachMaster.LoadAndAttach(data, category, isModified);
-            Modifications.Add(new ModifiedGroup(category.Type, new Modification(projectData.Id, data.Id, null)));
+            ModifiedGroup modifiedGroup = Modifications.FirstOrDefault(m => m.Type == category.Type);
+            if (modifiedGroup.Modification != null)
+            {
+                var indexOf = Modifications.IndexOf(modifiedGroup);
+                var oldModification = Modifications[indexOf].Modification;
+                Modifications[indexOf] = new ModifiedGroup(category.Type, new Modification(oldModification.Id, projectData.Id, data.Id, null));
+            }
+            else
+            {
+                Modifications.Add(new ModifiedGroup(category.Type, new Modification(0, projectData.Id, data.Id, null)));
+            }
 
             IsSaved = false;
         }
@@ -185,17 +196,16 @@ public class ProjectManager : MonoBehaviour
         m_ProjectName = projectData.Name;
         m_Commentary = projectData.Commentary;
 
-        currentCar = await m_CarsLoader.SpawnACar(project.Automobile);
-        currentCar.ChangeColorTo(projectData.Color);
+        await m_CarsLoader.SpawnACar(project.Automobile);
+        //CarSet?.Invoke();
 
         foreach (var modification in projectData.Modifications)
         {
             m_AttachMaster.LoadAndAttach(modification.Piece, modification.Piece.Category, false);
-            Modifications.Add(new ModifiedGroup(modification.Piece.Category.Type, new Modification(projectData.Id, modification.Piece.Id, modification.ColorId)));
+            Modifications.Add(new ModifiedGroup(modification.Piece.Category.Type, new Modification(modification.Id, projectData.Id, modification.Piece.Id, modification.ColorId)));
         }
 
-        CarSet?.Invoke();
-
+        currentCar.ChangeColorTo(projectData.Color);
         return true;
     }
 }

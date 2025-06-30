@@ -42,24 +42,24 @@ function showLoginForm(login = null) {
     hideRegistrationForm();
 
     const authToken = getCookie("auth_token");
-    if (authToken) {
-        fetch("https://localhost:5234/api/me", {
-            method: "GET",
-            headers: {
-                "Auth": authToken
-            }
-        }).then(async res => {
-            if (res.ok)
-                loadUnityApp();
-        });
-    } else {
+    // if (authToken) {
+    //     fetch("https://localhost:5234/api/me", {
+    //         method: "GET",
+    //         headers: {
+    //             "Auth": authToken
+    //         }
+    //     }).then(async res => {
+    //         if (res.ok)
+    //             loadUnityApp();
+    //     });
+    // } else {
         const loginWindow = document.getElementById('login-window');
         loginWindow.style.visibility = "visible";
         if (login) {
             const loginFormField = loginWindow.querySelector('#login-email');
             loginFormField.value = login;
         }
-    }
+    // }
 }
 
 function hideLoginForm() {

@@ -74,8 +74,8 @@ public class PieceAttachMaster : MonoBehaviour
             // сначала удаляем старую деталь, если есть
             if (isModified)
             {
-                var partToChange = point.GetChild(0);
-                GameObject.Destroy(partToChange.gameObject);
+                var partToChange = point.GetChild(0).gameObject;
+                GameObject.Destroy(partToChange);
             }
             // затем создаем новую в тот же сокет
             GameObject.Instantiate(prefab, point.transform);

@@ -11,7 +11,7 @@
         public Piece Piece { get; set; }
         public Color Color { get; set; }
 
-        public Modification(int projectId, int pieceId, int? colorId = null)
+        public Modification(int id, int projectId, int pieceId, int? colorId = null)
         {
             ProjectId = projectId;
             PieceId = pieceId;
